@@ -2,8 +2,8 @@
   "db": {
     "host": "mysql",
     "port": 3306,
-    "database": "test",
-    "password": "bird50",
+    "database": "flowto",
+    "password": "TTdib#50",
     "name": "db",
     "connector": "mysql",
     "user": "root"
