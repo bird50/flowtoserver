@@ -1,0 +1,28 @@
+{
+  "name": "m04",
+  "plural": "m04",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "id": {
+      "type": "number",
+      "required": true
+    },
+    "nameM04": {
+      "type": "string"
+    },
+    "p1": {
+      "type": "number"
+    },
+    "geom": {
+      "type": "geopoint"
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}

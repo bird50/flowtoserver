@@ -1,0 +1,126 @@
+{
+  "_meta": {
+    "sources": [
+      "../node_modules/loopback-component-passport/lib/models",
+      "loopback/common/models",
+      "loopback/server/models",
+      "../common/models",
+      "./models"
+    ],
+    "mixins": [
+      "loopback/common/mixins",
+      "loopback/server/mixins",
+      "../common/mixins",
+      "./mixins"
+    ]
+  },
+  "User": {
+    "dataSource": "db"
+  },
+  "AccessToken": {
+    "dataSource": "db",
+    "public": false
+  },
+  "ACL": {
+    "dataSource": "db",
+    "public": false
+  },
+  "RoleMapping": {
+    "dataSource": "db",
+    "public": false
+  },
+  "Role": {
+    "dataSource": "db",
+    "public": false
+  },
+  "Test2": {
+    "dataSource": "db",
+    "public": true
+  },
+  "Test": {
+    "dataSource": "db",
+    "public": true
+  },
+  "Test3": {
+    "dataSource": "db",
+    "public": true,
+    "$promise": {},
+    "$resolved": true
+  },
+  "m04": {
+    "dataSource": "db",
+    "public": true
+  },
+  "myuser": {
+    "dataSource": "db",
+    "public": true
+  },
+  "RidOffice": {
+    "dataSource": "db",
+    "public": true
+  },
+  "RidAgency": {
+    "dataSource": "db",
+    "public": true
+  },
+  "media": {
+    "dataSource": "media",
+    "public": true
+  },
+  "Container": {
+    "dataSource": "media",
+    "public": true
+  },
+  "myup": {
+    "dataSource": "media",
+    "public": true
+  },
+  "testup": {
+    "dataSource": "media",
+    "public": true
+  },
+  "mm": {
+    "dataSource": "mm",
+    "public": true
+  },
+  "mmm": {
+    "dataSource": "mm",
+    "public": true
+  },
+  "themedia": {
+    "dataSource": "themedia",
+    "public": true
+  },
+  "flowto": {
+    "dataSource": "db",
+    "public": true
+  },
+  "flowtoUser": {
+    "dataSource": "db",
+    "public": true
+  },
+  "team": {
+    "dataSource": "db",
+    "public": true
+  },
+  "assignment": {
+    "dataSource": "db",
+    "public": true
+  },
+  "accessToken": {
+    "dataSource": "db",
+    "public": false
+  },
+  "UserCredential": {
+    "dataSource": "db",
+    "public": true
+  },
+  "ApplicationCredential": {
+    "dataSource": "db",
+    "public": true
+  },
+  "UserIdentity": {
+    "dataSource": "db",
+    "public": true
+  }
+}

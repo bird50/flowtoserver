@@ -1,0 +1,22 @@
+{
+  "name": "myuser",
+  "plural": "myuser",
+  "base": "User",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "p1": {
+      "type": "string"
+    },
+    "p2": {
+      "type": "string",
+      "default": "id"
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}

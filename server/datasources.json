@@ -1,0 +1,27 @@
+{
+  "db": {
+    "host": "mysql",
+    "port": 3306,
+    "database": "test",
+    "password": "bird50",
+    "name": "db",
+    "connector": "mysql",
+    "user": "root"
+  },
+  "media": {
+    "name": "media",
+    "connector": "loopback-component-storage",
+    "provider": "filesystem",
+    "root": "./uploads"
+  },
+  "mm": {
+    "name": "mm",
+    "connector": "loopback-component-storage",
+    "root": "./uploads"
+  },
+  "themedia": {
+    "name": "themedia",
+    "connector": "loopback-component-storage",
+    "root": "./medias"
+  }
+}

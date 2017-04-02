@@ -1,0 +1,50 @@
+{
+  "name": "flowto",
+  "plural": "flowto",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "id": {
+      "type": "number",
+      "required": true
+    },
+    "position": {
+      "type": "geopoint"
+    },
+    "caption": {
+      "type": "string"
+    },
+    "flowtodate": {
+      "type": "date"
+    },
+    "media_container": {
+      "type": "string"
+    },
+    "media_name": {
+      "type": "string"
+    }
+  },
+  "validations": [],
+  "relations": {
+    "media": {
+      "type": "hasOne",
+      "model": "media",
+      "foreignKey": ""
+    },
+    "flowtoUser": {
+      "type": "belongsTo",
+      "model": "flowtoUser",
+      "foreignKey": ""
+    },
+    "assignment": {
+      "type": "belongsTo",
+      "model": "assignment",
+      "foreignKey": ""
+    }
+  },
+  "acls": [],
+  "methods": {}
+}
