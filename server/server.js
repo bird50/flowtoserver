@@ -86,8 +86,8 @@ ds.isActual(appModels, function(err, actual) {
 // Set up related models
 passportConfigurator.setupModels({
   userModel: app.models.flowtoUser,
-  userIdentityModel: app.models.UserIdentity,
-  userCredentialModel: app.models.UserCredential
+  userIdentityModel: app.models.userIdentity,
+  userCredentialModel: app.models.userCredential
 });
 // Configure passport strategies for third party auth providers
 for(var s in config) {
