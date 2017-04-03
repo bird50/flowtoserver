@@ -103,7 +103,13 @@ app.get('/auth/logout', function(req, res, next) {
   res.redirect('/');
 });
 
-app.get('/auth/login', function(req, res, next) {
+app.get('/login', function(req, res, next) {
+    res.render('loginfinish.html', {
+      user: req.user,
+      url: req.url,
+    });
+});
+app.get('/login.html', function(req, res, next) {
     res.render('loginfinish.html', {
       user: req.user,
       url: req.url,
