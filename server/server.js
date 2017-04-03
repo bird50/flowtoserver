@@ -75,13 +75,13 @@ boot(app, __dirname, function(err) {
 
 var ds = app.dataSources.db;
 
-//ds.isActual(appModels, function(err, actual) {
-  //if (!actual) {
+ds.isActual(appModels, function(err, actual) {
+  if (!actual) {
   //  ds.autoupdate(appModels, function(err) {
     //  if (err) throw (err);
     //});
-  //}
-  //});
+  }
+});
 
 // Set up related models
 passportConfigurator.setupModels({
