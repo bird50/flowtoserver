@@ -114,6 +114,8 @@ app.get('/login', function(req, res, next) {
     });
 });
 app.get('/login.html', function(req, res, next) {
+	console.log(JSON.stringify(req));
+	//console.log(req.url);
     res.render('loginfinish.html', {
       user: req.user,
       url: req.url,
