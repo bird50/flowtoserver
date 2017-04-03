@@ -91,7 +91,8 @@ for(var s in config) {
 var ensureLoggedIn = require('connect-ensure-login').ensureLoggedIn;
 
 
-app.get('/auth/account',ensureLoggedIn('/login'), function(req, res, next) {
+//app.get('/auth/account',ensureLoggedIn('/login'), function(req, res, next) {
+app.get('/auth/account', function(req, res, next) {
   res.render('loginfinish.html', {
     user: req.user,
     url: req.url,
