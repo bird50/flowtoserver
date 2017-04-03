@@ -93,6 +93,8 @@ var ensureLoggedIn = require('connect-ensure-login').ensureLoggedIn;
 
 //app.get('/auth/account',ensureLoggedIn('/login'), function(req, res, next) {
 app.get('/auth/account', function(req, res, next) {
+	console.log(req.user);
+	console.log(req.url);
   res.render('loginfinish.html', {
     user: req.user,
     url: req.url,
@@ -104,6 +106,8 @@ app.get('/auth/logout', function(req, res, next) {
 });
 
 app.get('/login', function(req, res, next) {
+	console.log(req.user);
+	console.log(req.url);
     res.render('loginfinish.html', {
       user: req.user,
       url: req.url,
