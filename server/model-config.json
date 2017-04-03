@@ -111,7 +111,7 @@
     "dataSource": "db",
     "public": false
   },
-  "UserCredential": {
+  "userCredential": {
     "dataSource": "db",
     "public": true
   },
@@ -119,7 +119,7 @@
     "dataSource": "db",
     "public": true
   },
-  "UserIdentity": {
+  "userIdentity": {
     "dataSource": "db",
     "public": true
   }
