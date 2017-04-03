@@ -122,7 +122,4 @@ app.start = function() {
 if (require.main === module) {
   app.start();
 }
-    
-  }//if (require.main === module)
-});//boot
 
