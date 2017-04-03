@@ -74,7 +74,7 @@ boot(app, __dirname, function(err) {
     var appModels = ['User', 'AccessToken', 'ACL', 'RoleMapping', 'Role','Test3','Test','Test2','m04','myuser','RidOffice','RidAgency','flowto','flowtoUser','accessToken','userCredential','userIdentity'];
 
 var ds = app.dataSources.db;
-
+/*
 ds.isActual(appModels, function(err, actual) {
   if (!actual) {
     ds.autoupdate(appModels, function(err) {
@@ -82,7 +82,7 @@ ds.isActual(appModels, function(err, actual) {
     });
   }
 });
-
+*/
 // Set up related models
 passportConfigurator.setupModels({
   userModel: app.models.flowtoUser,
@@ -95,9 +95,10 @@ for(var s in config) {
  c.session = c.session !== false;
  passportConfigurator.configureProvider(s, c);
 }
+var ensureLoggedIn = require('connect-ensure-login').ensureLoggedIn;
 
 
-app.get('/auth/account', function(req, res, next) {
+app.get('/auth/account',ensureLoggedIn('/login'), function(req, res, next) {
   res.render('loginfinish.html', {
     user: req.user,
     url: req.url,
