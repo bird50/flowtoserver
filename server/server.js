@@ -85,7 +85,7 @@ ds.isActual(appModels, function(err, actual) {
 
 // Set up related models
 passportConfigurator.setupModels({
-  userModel: app.models.user,
+  userModel: app.models.flowtoUser,
   userIdentityModel: app.models.UserIdentity,
   userCredentialModel: app.models.UserCredential
 });
