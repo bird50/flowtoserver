@@ -103,6 +103,12 @@ app.get('/auth/account', function(req, res, next) {
     url: req.url,
   });
 });
+app.get('/login.html', function(req, res, next) {
+  res.render('loginfinish.html', {
+    user: req.user,
+    url: req.url,
+  });
+});
 
 
 //flowtoUser.nestRemoting('RidAgency');
