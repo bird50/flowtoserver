@@ -77,9 +77,9 @@ var ds = app.dataSources.db;
 
 ds.isActual(appModels, function(err, actual) {
   if (!actual) {
-    ds.autoupdate(appModels, function(err) {
-      if (err) throw (err);
-    });
+  //  ds.autoupdate(appModels, function(err) {
+    //  if (err) throw (err);
+    //});
   }
 });
 
