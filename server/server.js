@@ -18,6 +18,29 @@ var consolidate = require('consolidate');
  app.set('view engine', 'html');
  app.set('views', path.join(__dirname, 'views'));
 
+ // Bootstrap the application, configure models, datasources and middleware.
+ // Sub-apps like REST API are mounted via boot scripts.
+ boot(app, __dirname, function(err) {
+   if (err) throw err;
+  
+   // start the server if `$ node server.js`
+   if (require.main === module){
+     var appModels = ['User', 'AccessToken', 'ACL', 'RoleMapping', 'Role','Test3','Test','Test2','m04','myuser','RidOffice','RidAgency','flowto','flowtoUser','accessToken','userCredential','userIdentity'];
+
+ var ds = app.dataSources.db;
+
+ ds.isActual(appModels, function(err, actual) {
+   if (!actual) {
+     ds.autoupdate(appModels, function(err) {
+       if (err) throw (err);
+ 	});
+   }//if (!actual) {
+ }); //ds.isActual
+   }//if (require.main === module)
+});//boot
+
+
+
 
 app.get('/test', function(req, res, next) {
   res.render('_test.html', {
@@ -51,38 +74,6 @@ app.middleware('auth', loopback.token({
 passportConfigurator.init();
 
 
-app.start = function() {
-  // start the web server
-  return app.listen(function() {
-    app.emit('started');
-    var baseUrl = app.get('url').replace(/\/$/, '');
-    console.log('Web server listening at: %s', baseUrl);
-    if (app.get('loopback-component-explorer')) {
-      var explorerPath = app.get('loopback-component-explorer').mountPath;
-      console.log('Browse your REST API at %s%s', baseUrl, explorerPath);
-    }
-  });
-};
-
-// Bootstrap the application, configure models, datasources and middleware.
-// Sub-apps like REST API are mounted via boot scripts.
-boot(app, __dirname, function(err) {
-  if (err) throw err;
-  
-  // start the server if `$ node server.js`
-  if (require.main === module){
-    var appModels = ['User', 'AccessToken', 'ACL', 'RoleMapping', 'Role','Test3','Test','Test2','m04','myuser','RidOffice','RidAgency','flowto','flowtoUser','accessToken','userCredential','userIdentity'];
-
-var ds = app.dataSources.db;
-
-ds.isActual(appModels, function(err, actual) {
-  if (!actual) {
-  //  ds.autoupdate(appModels, function(err) {
-    //  if (err) throw (err);
-    //});
-  }
-});
-
 // Set up related models
 passportConfigurator.setupModels({
   userModel: app.models.flowtoUser,
@@ -95,6 +86,8 @@ for(var s in config) {
  c.session = c.session !== false;
  passportConfigurator.configureProvider(s, c);
 }
+
+
 var ensureLoggedIn = require('connect-ensure-login').ensureLoggedIn;
 
 
@@ -109,10 +102,26 @@ app.get('/auth/logout', function(req, res, next) {
   res.redirect('/');
 });
 
+app.start = function() {
+  // start the web server
+  return app.listen(function() {
+    app.emit('started');
+    var baseUrl = app.get('url').replace(/\/$/, '');
+    console.log('Web server listening at: %s', baseUrl);
+    if (app.get('loopback-component-explorer')) {
+      var explorerPath = app.get('loopback-component-explorer').mountPath;
+      console.log('Browse your REST API at %s%s', baseUrl, explorerPath);
+    }
+  });
+};
+
+
 
 //flowtoUser.nestRemoting('RidAgency');
-
-     app.start();
+// start the server if `$ node server.js`
+if (require.main === module) {
+  app.start();
+}
     
   }//if (require.main === module)
 });//boot
