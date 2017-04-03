@@ -102,6 +102,13 @@ app.get('/auth/logout', function(req, res, next) {
   res.redirect('/');
 });
 
+app.get('/auth/login', function(req, res, next) {
+    res.render('loginfinish.html', {
+      user: req.user,
+      url: req.url,
+    });
+});
+
 app.start = function() {
   // start the web server
   return app.listen(function() {
