@@ -14,7 +14,10 @@
     },
     "activateAssignment": {
       "type": "number"
-    }
+    },
+	"profile": {
+	   "type": "string"
+	}
   },
   "validations": [],
   "relations": {
