@@ -71,7 +71,7 @@ boot(app, __dirname, function(err) {
   
   // start the server if `$ node server.js`
   if (require.main === module){
-    var appModels = ['User', 'AccessToken', 'ACL', 'RoleMapping', 'Role','Test3','Test','Test2','m04','myuser','RidOffice','RidAgency','flowto','flowtoUser','accessToken','UserCredential','UserIdentity'];
+    var appModels = ['User', 'AccessToken', 'ACL', 'RoleMapping', 'Role','Test3','Test','Test2','m04','myuser','RidOffice','RidAgency','flowto','flowtoUser','accessToken','userCredential','userIdentity'];
 
 var ds = app.dataSources.db;
 

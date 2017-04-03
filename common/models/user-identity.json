@@ -1,41 +1,16 @@
 {
-  "name": "UserIdentity",
-  "base": "PersistedModel",
-  "idInjection": true,
-  "options": {
-    "validateUpsert": true
-  },
-  "properties": {
-    "provider": {
-      "type": "string"
-    },
-    "authScheme": {
-      "type": "string"
-    },
-    "externalId": {
-      "type": "string"
-    },
-    "credentials": {
-      "type": "object"
-    },
-    "userId": {
-      "type": "any"
-    },
-    "created": {
-      "type": "date"
-    },
-    "modified": {
-      "type": "date"
-    }
-  },
+  "name": "userIdentity",
+  "plural": "userIdentities",
+  "base": "UserIdentity",
+  "properties": {},
   "validations": [],
   "relations": {
-    "flowtoUser": {
+    "user": {
       "type": "belongsTo",
       "model": "flowtoUser",
-      "foreignKey": ""
+      "foreignKey": "flowtoUserId"
     }
   },
   "acls": [],
-  "methods": {}
+  "methods": []
 }
