@@ -124,6 +124,7 @@ app.get('/', function(req, res, next) {
 });
 
 app.get('/auth/account', ensureLoggedIn('/login'), function(req, res, next) {
+	console.log(req.user);
   res.render('pages/loginProfiles', {
     user: req.user,
     url: req.url,
