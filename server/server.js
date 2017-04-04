@@ -196,8 +196,8 @@ app.get('/google', function(req, res, next) {
   });
 });
 app.get('/gcb', function(req, res, next) {
-	console.log(req.body);
-	var thecode=req.body.code;
+	console.log(req.query);
+	var thecode=req.query.code;
 	
   res.render('gcb.html', {
     client_id: "750910688956-5g4vvfqe10g44l2nc7uk5pi9vp4qeg21.apps.googleusercontent.com",
@@ -205,6 +205,7 @@ app.get('/gcb', function(req, res, next) {
     scope: "https://www.googleapis.com/auth/userinfo.email",
 	approval_prompt:"force",
 	access_type:"offline",
+	redirect_uri:"http://bid.rid.go.th:3001/gcb",
 	code:thecode
   });
 });
