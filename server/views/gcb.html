@@ -6,7 +6,16 @@
 	$(function() {
 	    console.log( "ready!" );
 		//getUserInfo();
+		$.ajax({
+			url:"https://accounts.google.com/o/oauth2/token?code={{code}}&client_id={{client_id}}&client_secret={{client_secret}}&redirect_uri={{redirect_uri}}&grant_type=authorization_code",
+			success: function(resp) {
+				console.log(resp);
+			}
+		});
 	});
+	
+	
+	
 	function getUserInfo() {
         $.ajax({
             url: 'https://www.googleapis.com/oauth2/v1/userinfo?access_token=' + acToken,
