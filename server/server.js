@@ -190,8 +190,10 @@ app.get('/google', function(req, res, next) {
 	goauth2 = require("google-oauth2")(config)
 	scope = "https://www.googleapis.com/auth/userinfo.profile"
 
-	goauth2.getAuthCode scope, (err, auth_code) ->
-	    console.log auth_code
+	goauth2.getAuthCode(scope,function(err, auth_code){
+		console.log(auth_code);
+	});
+	   
   res.render('google.html', {
     user: req.user,
     url: req.url,
