@@ -97,7 +97,7 @@ app.get('/auth/account', function(req, res, next) {
 	console.log(req.headers.cookie.access_token);
 	var tok=app.models.accessToken;
 	tok.findById(req.headers.cookie.access_token,{include:"flowtoUser"},function(err,instance_tok){
-		console.log(instance_tok.toJSON());
+		console.log(instance_tok);
 	});
 	
 	console.log(req.url);
