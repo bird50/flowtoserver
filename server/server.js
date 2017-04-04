@@ -186,6 +186,12 @@ app.get('/auth/logout', function(req, res, next) {
 });
 
 app.get('/google', function(req, res, next) {
+	config = require("oauth2-config.js")
+	goauth2 = require("google-oauth2")(config)
+	scope = "https://www.googleapis.com/auth/userinfo.profile"
+
+	goauth2.getAuthCode scope, (err, auth_code) ->
+	    console.log auth_code
   res.render('google.html', {
     user: req.user,
     url: req.url,
