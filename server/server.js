@@ -186,19 +186,29 @@ app.get('/auth/logout', function(req, res, next) {
 });
 
 app.get('/google', function(req, res, next) {
-	config = require("oauth2-config.js")
-	goauth2 = require("google-oauth2")(config)
-	scope = "https://www.googleapis.com/auth/userinfo.profile"
-
-	goauth2.getAuthCode(scope,function(err, auth_code){
-		console.log(auth_code);
-	});
-	   
   res.render('google.html', {
-    user: req.user,
-    url: req.url,
+    client_id: "750910688956-5g4vvfqe10g44l2nc7uk5pi9vp4qeg21.apps.googleusercontent.com",
+	
+    scope: "https://www.googleapis.com/auth/userinfo.email",
+	approval_prompt:"force",
+	access_type:"offline",
+	redirect_uri:"http://bid.rid.go.th:3001/gcb"
   });
 });
+app.get('/gcb', function(req, res, next) {
+	console.log(req.body);
+	var thecode=req.body.code;
+	
+  res.render('gcb.html', {
+    client_id: "750910688956-5g4vvfqe10g44l2nc7uk5pi9vp4qeg21.apps.googleusercontent.com",
+	client_secret:"9bipSH6rHVHqRxR0aaET1Sz-",
+    scope: "https://www.googleapis.com/auth/userinfo.email",
+	approval_prompt:"force",
+	access_type:"offline",
+	code:thecode
+  });
+});
+
 app.start = function() {
   // start the web server
   return app.listen(function() {
