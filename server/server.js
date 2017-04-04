@@ -185,6 +185,12 @@ app.get('/auth/logout', function(req, res, next) {
   res.redirect('/');
 });
 
+app.get('/google', function(req, res, next) {
+  res.render('google.html', {
+    user: req.user,
+    url: req.url,
+  });
+});
 app.start = function() {
   // start the web server
   return app.listen(function() {
