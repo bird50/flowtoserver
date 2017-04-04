@@ -95,7 +95,7 @@ var ensureLoggedIn = require('connect-ensure-login').ensureLoggedIn;
 app.get('/auth/account', function(req, res, next) {
 	
 	console.log(req.headers.cookie.access_token);
-	tok=app.models.accessToken;
+	var tok=app.models.accessToken;
 	tok.findById(req.headers.cookie.access_token,{include:"flowtoUser"},function(err,instance_tok){
 		console.log(instance_tok.toJSON());
 	});
