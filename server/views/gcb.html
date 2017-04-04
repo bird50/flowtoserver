@@ -10,7 +10,8 @@
 			url:"https://accounts.google.com/o/oauth2/token?code={{code}}&client_id={{client_id}}&client_secret={{client_secret}}&redirect_uri={{redirect_uri}}&grant_type=authorization_code",
 			success: function(resp) {
 				console.log(resp);
-			}
+			},
+			dataType: "jsonp"	
 		});
 	});
 	
