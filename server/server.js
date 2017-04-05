@@ -229,7 +229,7 @@ app.get('/gcb', function(req, res, next) {
        if (error) {res.send(error)};
        var accessToken = tokens.access_token;
 	   console.log('Tok:'+accessToken);
-	   res.render('gcb.html'){
+	   res.render('gcb.html',{
 		   'access_token':accessToken
 	   });
        //either save the token to a database, or send it back to the client to save.
