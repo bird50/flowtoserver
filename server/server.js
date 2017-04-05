@@ -198,35 +198,38 @@ app.get('/google', function(req, res, next) {
 app.get('/gcb', function(req, res, next) {
 	console.log(req.query);
 	var thecode=req.query.code;
-	var request = require('request');
-	var token_request="client_id=750910688956-5g4vvfqe10g44l2nc7uk5pi9vp4qeg21.apps.googleusercontent.com&client_secret=9bipSH6rHVHqRxR0aaET1Sz-&scope=https://www.googleapis.com/auth/userinfo.email&approval_prompt=force&access_type=offline&grant_type=authorization_code&redirect_uri=http://bid.rid.go.th:3001/gcb&code="+thecode;
-	console.log(token_request);
-	var request_length = token_request.length;
-	request(
-	        { method: 'POST',
-	          headers: {'Content-length': request_length, 'Content-type':'application/x-www-form-urlencoded'},
-	          uri:'https://accounts.google.com/o/oauth2/token',
-	          body: token_request
-	        },
-	        function (error, response, body) {
-	            if(response.statusCode == 200){
-	                console.log('document fetched');
-	                token=body['access_token'];
-	                //store_token(body);
-	             //   if(success){
-	                    //success(token);
-						console.log('token:'+token);
-	               // }
-	            }
-	            else {
-	                console.log('error: '+ response.statusCode);
-	                console.log(body)
-	               // if(fail){
-	                    //fail();
-						//}
-	            }
-	        }
-	    );
+var google = require('lib/googleapis.js');
+	var OAuth2Client = google.auth.OAuth2;
+	var oauth2Client = new OAuth2Client("750910688956-5g4vvfqe10g44l2nc7uk5pi9vp4qeg21.apps.googleusercontent.com","9bipSH6rHVHqRxR0aaET1Sz-" , "http://bid.rid.go.th:3001/gcb");
+	oauth2Client.generateAuthUrl({
+		    access_type: 'offline', 
+	 scope:'https://www.googleapis.com/auth/userinfo.email' // 
+			});
+			oauth2Client.getToken(thecode,function(err,tokens){
+		        if (err) {
+					console.log(err);
+		        }
+				console.log(tokens);
+			});
+	/*
+	function getAccessToken (oauth2Client, callback) {
+	  // generate consent page url
+	  var url = oauth2Client.generateAuthUrl({
+	    access_type: 'offline', // will return a refresh token
+	    scope: 'https://www.googleapis.com/auth/userinfo.email' // can be a space-delimited string or an array of scopes
+		});
+		oauth2Client.getToken(code, function (err, tokens) {
+		      if (err) {
+		        return callback(err);
+		      }
+		      // set tokens to the client
+		      // TODO: tokens should be set by OAuth2 client.
+		      oauth2Client.setCredentials(tokens);
+		      callback();
+		    });
+	  });
+    }
+		*/
 
   res.render('gcb.html', {
     client_id: "750910688956-5g4vvfqe10g44l2nc7uk5pi9vp4qeg21.apps.googleusercontent.com",
