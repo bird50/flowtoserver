@@ -200,6 +200,7 @@ app.get('/gcb', function(req, res, next) {
 	var thecode=req.query.code;
 	var request = require('request');
 	var token_request="client_id= 750910688956-5g4vvfqe10g44l2nc7uk5pi9vp4qeg21.apps.googleusercontent.com&client_secret=9bipSH6rHVHqRxR0aaET1Sz-&scope=https://www.googleapis.com/auth/userinfo.email&approval_prompt=force&access_type=offline&grant_type=authorization_code&redirect_uri=http://bid.rid.go.th:3001/gcb&code:"+thecode;
+	console.log(token_request);
 	var request_length = token_request.length;
 	request(
 	        { method: 'POST',
