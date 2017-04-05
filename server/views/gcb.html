@@ -63,7 +63,8 @@
 
   function setSigninStatus(isSignedIn) {
     var user = GoogleAuth.currentUser.get();
-	console.log(user);
+	var email = user.getBasicProfile().getEmail();
+	console.log(email);
     var isAuthorized = user.hasGrantedScopes(SCOPE);
     if (isAuthorized) {
       $('#sign-in-or-out-button').html('Sign out');
@@ -96,6 +97,4 @@
         onreadystatechange="if (this.readyState === 'complete') this.onload()">
 </script>
 </body>
-
 </html>
-		
