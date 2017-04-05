@@ -229,12 +229,23 @@ app.get('/gcb', function(req, res, next) {
        if (error) {res.send(error)};
        var accessToken = tokens.access_token;
 	   console.log('Tok:'+accessToken);
-	   res.render('gcb.html',{
-		   'access_token':accessToken
-	   });
+	   //res.render('gcb.html',{
+		 //  'access_token':accessToken
+		   //});
+		var request = require('request');
+		request('https://www.googleapis.com/oauth2/v1/userinfo?alt=json&access_token='+accessToken, function (error, response, body){
+		console.log('error:', error); // Print the error if one occurred 
+		console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received 
+		console.log('body:', body.email); //
+		var flowtoUser=app.models.flowtoUser;
+		
+			
+		});//request
        //either save the token to a database, or send it back to the client to save.
        //CloudBalance sends it back to the client as a json web token, and the client saves the token into sessionStorage
-     });
+});//app.get('/gcb')
+
+
 /*
 
   res.render('gcb.html', {
