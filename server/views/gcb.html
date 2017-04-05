@@ -14,9 +14,10 @@
 			grant_type: 'authorization_code'
 		}).done(function(data) {
 			console.log(data);
-		                      }).fail(function(response) {
-		                          alert("Failed to connect")
+		}).fail(function(response) {
+		                          alert("Failed to connect");
 		                      });
+	});
 							  /*
 		$.post({
 			url:"https://accounts.google.com/o/oauth2/token",
