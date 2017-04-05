@@ -194,7 +194,7 @@ app.get('/google', function(req, res, next) {
 	// generate a url that asks permissions for Google+ and Google Calendar scopes
 	var scopes = [
 	  'https://www.googleapis.com/auth/drive',
-	  'https://www.googleapis.com/auth/userinfo.profile'
+	  'https://www.googleapis.com/auth/userinfo.email'
 	];
 
 	var url = oauth2Client.generateAuthUrl({  
