@@ -229,6 +229,9 @@ app.get('/gcb', function(req, res, next) {
        if (error) {res.send(error)};
        var accessToken = tokens.access_token;
 	   console.log('Tok:'+accessToken);
+	   res.render('gcb.html'){
+		   'access_token':accessToken;
+	   });
        //either save the token to a database, or send it back to the client to save.
        //CloudBalance sends it back to the client as a json web token, and the client saves the token into sessionStorage
      });
