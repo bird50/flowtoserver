@@ -202,6 +202,9 @@ app.get('/google', function(req, res, next) {
 	  scope: scopes // If you only need one scope you can pass it as string
 	});
 	console.log('url:'+url);
+	res.redirect(url);
+	
+	/*
   res.render('google.html', {
     client_id: "750910688956-5g4vvfqe10g44l2nc7uk5pi9vp4qeg21.apps.googleusercontent.com",
 	
@@ -209,12 +212,21 @@ app.get('/google', function(req, res, next) {
 	approval_prompt:"force",
 	access_type:"offline",
 	redirect_uri:"http://bid.rid.go.th:3001/gcb"
-  });
+  });*/
 });
+	
 app.get('/gcb', function(req, res, next) {
 	console.log(req.query);
-	var thecode=req.query.code;
-
+	//var thecode=req.query.code;
+    var code = req.query.code;
+     oauth2Client.getToken(code, function(error, tokens) {
+       if (error) {res.send(error)};
+       var accessToken = tokens.access_token;
+	   console.log('Tok:'+accessToken);
+       //either save the token to a database, or send it back to the client to save.
+       //CloudBalance sends it back to the client as a json web token, and the client saves the token into sessionStorage
+     });
+/*
 
   res.render('gcb.html', {
     client_id: "750910688956-5g4vvfqe10g44l2nc7uk5pi9vp4qeg21.apps.googleusercontent.com",
@@ -225,6 +237,7 @@ app.get('/gcb', function(req, res, next) {
 	redirect_uri:"http://bid.rid.go.th:3001/gcb",
 	code:thecode
   });
+	*/
 });
 
 app.start = function() {
