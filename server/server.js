@@ -233,7 +233,8 @@ app.get('/gcb', function(req, res, next) {
 		 //  'access_token':accessToken
 		   //});
 		var request = require('request');
-		request('https://www.googleapis.com/oauth2/v1/userinfo?alt=json&access_token='+accessToken, function (error, response, body){
+		var url="https://www.googleapis.com/oauth2/v1/userinfo?alt=json&access_token="+accessToken;
+		request(url, function (error, response, body){
 		console.log('error:', error); // Print the error if one occurred 
 		console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received 
 		console.log('body:', body.email); //
