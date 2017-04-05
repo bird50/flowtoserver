@@ -6,7 +6,7 @@
 	$(function() {
 	    console.log( "ready!" );
 		//getUserInfo();
-		$.post('https://accounts.google.com/o/oauth2/token', {
+		/*$.post('https://accounts.google.com/o/oauth2/token', {
 			code:"{{code}}",
 			client_id: "{{client_id}}",
 			client_secret: "{{client_secret}}",
@@ -16,7 +16,22 @@
 			console.log(data);
 		}).fail(function(response) {
 		                          alert("Failed to connect");
-		                      });
+		});*/
+		$.post({
+			url:"https://accounts.google.com/o/oauth2/token",
+			data:{
+			code:"{{code}}",
+			client_id: "{{client_id}}",
+			client_secret: "{{client_secret}}",
+			redirect_uri: "{{redirect_uri}}",
+			grant_type: 'authorization_code'
+			},
+			dataType: "jsonp"
+			}).done(function(data) {
+			console.log(data);
+		}).fail(function(response) {
+		                          alert("Failed to connect");
+		});
 	});
 							  /*
 		$.post({
