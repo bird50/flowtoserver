@@ -1,82 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-<script>
-	$(function() {
-	    console.log( "ready!" );
-		//getUserInfo();
-		/*$.post('https://accounts.google.com/o/oauth2/token', {
-			code:"{{code}}",
-			client_id: "{{client_id}}",
-			client_secret: "{{client_secret}}",
-			redirect_uri: "{{redirect_uri}}",
-			grant_type: 'authorization_code'
-		}).done(function(data) {
-			console.log(data);
-		}).fail(function(response) {
-		                          alert("Failed to connect");
-		});*/
-		/*$.post({
-			url:"https://accounts.google.com/o/oauth2/token",
-			data:{
-			code:"{{code}}",
-			client_id: "{{client_id}}",
-			client_secret: "{{client_secret}}",
-			redirect_uri: "{{redirect_uri}}",
-			grant_type: 'authorization_code'
-			},
-			contentType:"application/x-www-form-urlencoded",
-			dataType: "jsonp"
-			}).done(function(data) {
-			console.log(data);
-		}).fail(function(response) {
-		    alert("Failed to connect");
-		});
-	});*/
-							  /*
-		$.post({
-			url:"https://accounts.google.com/o/oauth2/token",
-			type:"POST",
-			data:"code={{code}}&client_id={{client_id}}&client_secret={{client_secret}}&redirect_uri={{redirect_uri}}&grant_type=authorization_code",
-			contentType:"application/x-www-form-urlencoded",
-			success: function(resp) {
-				console.log(resp);
-			},
-			dataType: "text"	
-		});
-	});
-	*/
-	
-	
-	function getUserInfo() {
-        $.ajax({
-            url: 'https://www.googleapis.com/oauth2/v1/userinfo?access_token=' + acToken,
-            data: null,
-            success: function(resp) {
-                user    =   resp;
-                console.log(user);
-                $('#uName').text('Welcome ' + user.name);
-                $('#imgHolder').attr('src', user.picture);
-				$('#uEmail').text(user.email);
-            },
-            dataType: "jsonp"
-        });
-    }
-	</script>
+
 </head>
 <body>
-	<div id="uName"></div>
-	<img id="imgHolder">
-	<div id="uEmail"></div>
-	<pre id="mypre">
-		code={{code}}&  
-		client_id={{client_id}}&  
-		client_secret={{client_secret}}&  
-		redirect_uri={{redirect_uri}}&  
-		grant_type=authorization_code
-	</pre>
-	
 <script>
   var GoogleAuth;
   var SCOPE = 'https://www.googleapis.com/auth/userinfo.email';
