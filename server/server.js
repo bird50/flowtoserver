@@ -219,6 +219,12 @@ app.get('/gcb', function(req, res, next) {
 	console.log(req.query);
 	//var thecode=req.query.code;
     var code = req.query.code;
+	var google = require('googleapis');  
+	var OAuth2 = google.auth.OAuth2;
+
+	var oauth2Client = new OAuth2("750910688956-5g4vvfqe10g44l2nc7uk5pi9vp4qeg21.apps.googleusercontent.com", "9bipSH6rHVHqRxR0aaET1Sz-", "http://bid.rid.go.th:3001/gcb");
+
+	
      oauth2Client.getToken(code, function(error, tokens) {
        if (error) {res.send(error)};
        var accessToken = tokens.access_token;
