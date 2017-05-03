@@ -27,6 +27,11 @@
         "type": "hasMany",
         "model": "flowto",
         "foreignKey": "assignmentId"
+      },
+      "flowtoUser": {
+        "type": "belongsTo",
+        "model": "flowtoUser",
+        "foreignKey": ""
       }
   },
   "acls": [],
