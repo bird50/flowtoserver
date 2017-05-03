@@ -83,10 +83,10 @@ ds.isActual(appModels, function(err, actual) {
 });
 
 // to support JSON-encoded bodies
-app.middleware('parse', bodyParser.json());
+app.middleware('parse', bodyParser.json({limit: '50mb'}));
 // to support URL-encoded bodies
 app.middleware('parse', bodyParser.urlencoded({
-  extended: true,
+  extended: true,limit: '50mb'
 }));
 
 // The access token is only available after boot
@@ -105,8 +105,8 @@ passportConfigurator.init();
 // We need flash messages to see passport errors
 app.use(flash());
 
-app.use(loopback.bodyParser.json({limit: '50mb'}));
-app.use(loopback.bodyParser.urlencoded({limit: '50mb', extended: true}));
+//app.use(loopback.bodyParser.json({limit: '50mb'}));
+//app.use(loopback.bodyParser.urlencoded({limit: '50mb', extended: true}));
 
 passportConfigurator.setupModels({
   userModel: app.models.flowtoUser,
