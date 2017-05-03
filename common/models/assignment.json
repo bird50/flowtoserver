@@ -33,7 +33,7 @@
         "model": "flowtoUser",
         "foreignKey": ""
       }
-  },
+  }, 
   "acls": [],
   "methods": {}
 }
