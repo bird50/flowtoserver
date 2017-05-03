@@ -74,6 +74,7 @@ ds.isActual(appModels, function(err, actual) {
   //if (!actual) {
 	
     ds.autoupdate(appModels, function(err) {
+		console.log('AutoUpdat modellllllllllllllllllll');
       if (err) throw (err);
     });
   //}
