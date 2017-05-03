@@ -65,7 +65,7 @@ boot(app, __dirname, function(err) {
   // start the server if `$ node server.js`
   if (require.main === module){
 	  
-    var appModels = ['User', 'AccessToken', 'ACL', 'RoleMapping', 'Role','Test3','Test','Test2','m04','myuser','RidOffice','RidAgency','flowto','flowtoUser','accessToken','userCredential','userIdentity'];
+    var appModels = ['User', 'AccessToken', 'ACL', 'RoleMapping', 'Role','Test3','Test','Test2','m04','myuser','RidOffice','RidAgency','flowto','flowtoUser','accessToken','userCredential','userIdentity','assignment'];
 
 var ds = app.dataSources.db;
 
@@ -237,7 +237,7 @@ app.get('/gcb', function(req, res, next) {
 		request(url, function (error, response, body){
 		console.log('error:', error); // Print the error if one occurred 
 		console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received 
-		console.log('body:', body.email); //
+		console.log('body:', body); //
 		var flowtoUser=app.models.flowtoUser;
 		
 			
