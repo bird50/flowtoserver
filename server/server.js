@@ -105,6 +105,9 @@ passportConfigurator.init();
 // We need flash messages to see passport errors
 app.use(flash());
 
+app.use(loopback.bodyParser.json({limit: '50mb'}));
+app.use(loopback.bodyParser.urlencoded({limit: '50mb', extended: true}));
+
 passportConfigurator.setupModels({
   userModel: app.models.flowtoUser,
   userIdentityModel: app.models.userIdentity,
