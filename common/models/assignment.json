@@ -22,7 +22,13 @@
     }
   },
   "validations": [],
-  "relations": {},
+  "relations": {
+      "flowto": {
+        "type": "hasMany",
+        "model": "flowto",
+        "foreignKey": "assignmentId"
+      }
+  },
   "acls": [],
   "methods": {}
 }
