@@ -269,7 +269,7 @@ app.get('/gcb', function(req, res, next) {
 var multer  =   require('multer');
 var storage =   multer.diskStorage({
   destination: function (req, file, callback) {
-    callback(null, './upload_multer');
+    callback(null, '../upload_multer');
   },
   filename: function (req, file, callback) {
     callback(null, file.fieldname + '-' + Date.now());
