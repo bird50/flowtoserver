@@ -274,9 +274,10 @@ app.post('/photo/:container',function(req,res,next){
 	  destination: function (req, file, callback) {
 	    callback(null, './uploads/'+req.params.container);
 	  }
-	  //filename: function (req, file, callback) {
+	  filename: function (req, file, callback) {
 	    //callback(null, file.fieldname + '-' + Date.now());
-	  //}
+		callback(null,file.originalname);
+	  }
 	});
 
 	var upload = multer({ storage : storage}).single('file');
