@@ -260,8 +260,10 @@ var storage =   multer.diskStorage({
     callback(null, file.fieldname + '-' + Date.now());
   }
 });
+
 var upload = multer({ storage : storage}).single('file');
-app.post('/photo',function(req,res){
+
+app.post('/photo',function(req,res,next){
   upload(req,res,function(err) {
     if(err) {
       console.log(err)
