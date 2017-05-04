@@ -267,18 +267,19 @@ app.get('/gcb', function(req, res, next) {
 
 ////test multer 
 var multer  =   require('multer');
-var storage =   multer.diskStorage({
-  destination: function (req, file, callback) {
-    callback(null, './upload_multer/${container}');
-  },
-  filename: function (req, file, callback) {
-    callback(null, file.fieldname + '-' + Date.now());
-  }
-});
 
-var upload = multer({ storage : storage}).single('file');
 
 app.post('/photo/:container',function(req,res,next){
+	var storage =   multer.diskStorage({
+	  destination: function (req, file, callback) {
+	    callback(null, './upload_multer/'+req.params.container);
+	  },
+	  filename: function (req, file, callback) {
+	    callback(null, file.fieldname + '-' + Date.now());
+	  }
+	});
+
+	var upload = multer({ storage : storage}).single('file');
   upload(req,res,function(err) {
     if(err) {
       console.log(err)
