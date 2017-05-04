@@ -76,11 +76,11 @@ ds.isActual(appModels, function(err, actual) {
     ds.autoupdate(appModels, function(err) {
 		console.log('AutoUpdat modellllllllllllllllllll');
       if (err) throw (err);
-    });
+    }); //ds
   //}
-});
-}
-});
+}); //isActual
+} // if
+}); //boot
 
 // to support JSON-encoded bodies
 app.middleware('parse', bodyParser.json({limit: '50mb'}));
@@ -250,6 +250,21 @@ app.get('/gcb', function(req, res, next) {
        //CloudBalance sends it back to the client as a json web token, and the client saves the token into sessionStorage
 });//app.get('/gcb')
 
+
+/*
+
+  res.render('gcb.html', {
+    client_id: "750910688956-5g4vvfqe10g44l2nc7uk5pi9vp4qeg21.apps.googleusercontent.com",
+	client_secret:"9bipSH6rHVHqRxR0aaET1Sz-",
+    scope: "https://www.googleapis.com/auth/userinfo.email",
+	approval_prompt:"force",
+	access_type:"offline",
+	redirect_uri:"http://bid.rid.go.th:3001/gcb",
+	code:thecode
+  });
+	*/
+});
+
 ////test multer 
 var multer  =   require('multer');
 var storage =   multer.diskStorage({
@@ -272,19 +287,7 @@ app.post('/photo',function(req,res,next){
     res.end("File is uploaded");
   });
 });
-/*
 
-  res.render('gcb.html', {
-    client_id: "750910688956-5g4vvfqe10g44l2nc7uk5pi9vp4qeg21.apps.googleusercontent.com",
-	client_secret:"9bipSH6rHVHqRxR0aaET1Sz-",
-    scope: "https://www.googleapis.com/auth/userinfo.email",
-	approval_prompt:"force",
-	access_type:"offline",
-	redirect_uri:"http://bid.rid.go.th:3001/gcb",
-	code:thecode
-  });
-	*/
-//});
 
 app.start = function() {
   // start the web server
