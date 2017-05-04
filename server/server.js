@@ -284,7 +284,7 @@ app.post('/photo',function(req,res,next){
 	code:thecode
   });
 	*/
-});
+//});
 
 app.start = function() {
   // start the web server
