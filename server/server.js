@@ -282,7 +282,7 @@ app.post('/photo',function(req,res,next){
   upload(req,res,function(err) {
     if(err) {
       console.log(err)
-      return res.end("Error uploading file.%s",err);
+      return res.end("Error uploading file."+err);
     }
     res.end("File is uploaded");
   });
