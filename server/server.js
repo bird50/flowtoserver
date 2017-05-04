@@ -250,7 +250,26 @@ app.get('/gcb', function(req, res, next) {
        //CloudBalance sends it back to the client as a json web token, and the client saves the token into sessionStorage
 });//app.get('/gcb')
 
-
+////test multer 
+var multer  =   require('multer');
+var storage =   multer.diskStorage({
+  destination: function (req, file, callback) {
+    callback(null, './upload_multer');
+  },
+  filename: function (req, file, callback) {
+    callback(null, file.fieldname + '-' + Date.now());
+  }
+});
+var upload = multer({ storage : storage}).single('file');
+app.post('/photo',function(req,res){
+  upload(req,res,function(err) {
+    if(err) {
+      console.log(err)
+      return res.end("Error uploading file.");
+    }
+    res.end("File is uploaded");
+  });
+});
 /*
 
   res.render('gcb.html', {
