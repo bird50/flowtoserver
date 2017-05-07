@@ -284,9 +284,9 @@ app.post('/photo/:container',function(req,res,next){
   upload(req,res,function(err) {
 	// upload then resize with sharp
 	  console.log('req//////////');
-	  console.log(req);
+	  console.log(req.file);
 	  console.log('res//////////');
-	  console.log(res);
+	  console.log(res.file);
 	/*  
 	import sharp from 'sharp';
 	sharp('input.jpg')
