@@ -295,10 +295,11 @@ app.post('/photo/:container',function(req,res,next){
 		.resize(1477)
 	//	.toBuffer()
     .toFile(req.file.path,
-		(err,info)=>if(err){console.log(err)};
-		
+		function(err,info){
+		if(err){console.log(err)};
 		console.log('resize to '+req.file.path);
 		console.log(info);
+		}
 	)
    // .catch( err =>console.log('error'));
     if(err) {
