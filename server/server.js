@@ -301,6 +301,17 @@ app.post('/photo/:container',function(req,res,next){
 		console.log(info);
 		}
 	)
+sharp(req.file.path)
+	//.rotate()
+	.resize(400)
+//	.toBuffer()
+.toFile(req.file.destination+'/thumb/'+req.file.filename,
+	function(err,info){
+	if(err){console.log(err)};
+	console.log('resize to '+req.file.path);
+	console.log(info);
+	}
+)
    // .catch( err =>console.log('error'));
     if(err) {
       console.log(err)
