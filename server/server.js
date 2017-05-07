@@ -294,7 +294,12 @@ app.post('/photo/:container',function(req,res,next){
 		//.rotate()
 		.resize(1477)
 	//	.toBuffer()
-    .toFile(req.file.path,(err,info) =>console.log('resize to '+req.file.path))
+    .toFile(req.file.path,
+		(err,info)=>if(err){console.log(err)};
+		
+		console.log('resize to '+req.file.path);
+		console.log(info);
+	)
    // .catch( err =>console.log('error'));
     if(err) {
       console.log(err)
