@@ -294,7 +294,7 @@ app.post('/photo/:container',function(req,res,next){
 		//.rotate()
 		.resize(1477)
 	//	.toBuffer()
-    .toFile(req.file.path,
+    .toFile(req.file.destination+'/mid/'+req.file.filename,
 		function(err,info){
 		if(err){console.log(err)};
 		console.log('resize to '+req.file.path);
