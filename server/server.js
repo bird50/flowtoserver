@@ -293,7 +293,7 @@ app.post('/photo/:container',function(req,res,next){
 	sharp(req.file.path)
 		//.rotate()
 		.resize(1477)
-		.toBuffer()
+	//	.toBuffer()
     .toFile(req.file.path,(err,info) =>console.log('resize to '+req.file.path))
    // .catch( err =>console.log('error'));
     if(err) {
