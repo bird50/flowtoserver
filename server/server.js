@@ -282,10 +282,24 @@ app.post('/photo/:container',function(req,res,next){
 
 	var upload = multer({ storage : storage}).single('file');
   upload(req,res,function(err) {
+	// upload then resize with sharp
+	  console.log('req//////////');
+	  console.log(req);
+	  console.log('res//////////');
+	  console.log(res);
+	/*  
+	import sharp from 'sharp';
+	sharp('input.jpg')
+		//.rotate()
+		.resize(1477)
+		.toBuffer()
+    .then(data =>... )
+    .catch( err => ... );
     if(err) {
       console.log(err)
       return res.end("Error uploading file."+err);
     }
+	 */
     res.end("File is uploaded");
   });
 });
