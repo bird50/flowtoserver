@@ -287,19 +287,19 @@ app.post('/photo/:container',function(req,res,next){
 	  console.log(req.file);
 	  console.log('res//////////');
 	  console.log(res.file);
-	/*  
+	
 	import sharp from 'sharp';
-	sharp('input.jpg')
+	sharp(req.file.path)
 		//.rotate()
 		.resize(1477)
 		.toBuffer()
-    .then(data =>... )
-    .catch( err => ... );
+    .then(data =>console.log('resize to '+req.file.path))
+    .catch( err =>console.log('error'));
     if(err) {
       console.log(err)
       return res.end("Error uploading file."+err);
     }
-	 */
+	 
     res.end("File is uploaded");
   });
 });
