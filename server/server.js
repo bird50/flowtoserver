@@ -288,7 +288,8 @@ app.post('/photo/:container',function(req,res,next){
 	  console.log('res//////////');
 	  console.log(res.file);
 	
-	import sharp from 'sharp';
+	//import sharp from 'sharp';
+	var sharp= require('sharp');
 	sharp(req.file.path)
 		//.rotate()
 		.resize(1477)
