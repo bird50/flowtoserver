@@ -9,7 +9,7 @@ Flowtouser.afterSave = function(next) {
 }
 	*/
 Flowtouser.beforeCreate = function(next, modelInstance) {
-	modelInstance.avatar=modelInstance.username[0];
+	modelInstance.avatar=modelInstance.username[0].toUpperCase();
 	next();
 }
 };
