@@ -287,6 +287,25 @@ app.post('/photo/:container',function(req,res,next){
 	  console.log(req.file);
 	  console.log('res//////////');
 	  console.log(res.file);
+	  /*
+	  var fs = require('fs');
+var dir = './tmp';
+
+if (!fs.existsSync(dir)){
+    fs.mkdirSync(dir);
+}
+	  */
+	  var fs = require('fs');
+	  var dir=req.file.destination+'/mid';
+	  if (!fs.existsSync(dir)){
+		  console.log('create dir:'+dir2);
+	      fs.mkdirSync(dir);
+	  }
+	  var dir2=req.file.destination+'/thumb';
+	  if (!fs.existsSync(dir2)){
+		  console.log('create dir:'+dir2);
+	      fs.mkdirSync(dir2);
+	  }
 	
 	//import sharp from 'sharp';
 	var sharp= require('sharp');
