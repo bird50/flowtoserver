@@ -25,7 +25,10 @@
     },
     "media_name": {
       "type": "string"
-    }
+    },
+	"create_time":{
+		"type":"date"
+	}
   },
   "validations": [],
   "relations": {

@@ -19,7 +19,13 @@
     },
     "avatar": {
       "type": "string"
-    }
+    },
+	"create_time":{
+		"type":"date"
+	},
+	"priority":{
+		"type":"number"
+	}
   },
   "validations": [],
   "relations": {

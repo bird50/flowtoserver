@@ -298,7 +298,7 @@ if (!fs.existsSync(dir)){
 	  var fs = require('fs');
 	  var dir=req.file.destination+'/mid';
 	  if (!fs.existsSync(dir)){
-		  console.log('create dir:'+dir2);
+		  console.log('create dir:'+dir);
 	      fs.mkdirSync(dir);
 	  }
 	  var dir2=req.file.destination+'/thumb';
