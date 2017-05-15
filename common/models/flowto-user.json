@@ -42,6 +42,15 @@
       "foreignKey": "userId"
     }
   },
-  "acls": [],
+  "acls": [
+	  
+	      {
+	        "accessType": "READ",
+	        "principalType": "ROLE",
+	        "principalId": "$authenticated",
+	        "permission": "ALLOW",
+	        "property": "find"
+	      }
+  ],
   "methods": {}
 }
