@@ -46,14 +46,14 @@
 	        "principalType": "ROLE",
 	        "principalId": "$everyone",
 	        "permission": "DENY",
-	        "property": "destroyById"
+	        "property": "delete"
 	      },
 	  {
 	        "accessType": "WRITE",
 	        "principalType": "ROLE",
 	        "principalId": "$owner",
 	        "permission": "ALLOW",
-	        "property": "destroyById"
+	        "property": "delete"
 	      }
 		  
 	
