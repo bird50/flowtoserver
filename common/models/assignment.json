@@ -45,15 +45,13 @@
 	        "accessType": "WRITE",
 	        "principalType": "ROLE",
 	        "principalId": "$everyone",
-	        "permission": "DENY",
-	        "property": "delete"
+	        "permission": "DENY"
 	      },
 	  {
 	        "accessType": "WRITE",
 	        "principalType": "ROLE",
 	        "principalId": "$owner",
-	        "permission": "ALLOW",
-	        "property": "delete"
+	        "permission": "ALLOW"
 	      }
 		  
 	
