@@ -44,17 +44,18 @@
 	  {
 	        "accessType": "WRITE",
 	        "principalType": "ROLE",
+	        "principalId": "$everyone",
+	        "permission": "DENY",
+	        "property": "destroyById"
+	      },
+	  {
+	        "accessType": "WRITE",
+	        "principalType": "ROLE",
 	        "principalId": "$owner",
 	        "permission": "ALLOW",
 	        "property": "destroyById"
-	      },
-		  {
-		        "accessType": "WRITE",
-		        "principalType": "ROLE",
-		        "principalId": "$everyone",
-		        "permission": "DENY",
-		        "property": "destroyById"
-		      }
+	      }
+		  
 	
   ],
   "methods": {}
