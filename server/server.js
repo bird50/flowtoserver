@@ -341,6 +341,46 @@ sharp(req.file.path)
   });
 });
 
+// for upload avatar of user 
+app.post('/profile_upload',function(req,res,next){
+	var storage =   multer.diskStorage({
+	  destination: function (req, file, callback) {
+	    callback(null, './profile_pics');
+	  },
+	  filename: function (req, file, callback) {
+	    //callback(null, file.fieldname + '-' + Date.now());
+		callback(null,file.originalname);
+	  }
+	});
+	
+	var upload = multer({ storage : storage}).single('file');
+	upload(req,res,function(err) {
+	// upload then resize with sharp
+		console.log('req//////////');
+		console.log(req.file);
+		console.log('res//////////');
+		console.log(res.file);
+		sharp(req.file.path)
+		//.rotate()
+		.resize(400)
+	//	.toBuffer()
+		.toFile(req.file.destination+'/thumb/'+req.file.filename,
+			function(err,info){
+				if(err){console.log(err)};
+				console.log('resize to '+req.file.path);
+				console.log(info);
+			}
+		);
+	// .catch( err =>console.log('error'));
+		if(err) {
+			console.log(err);
+			return res.end("Error uploading file."+err);
+		}
+	 
+		res.end("File is uploaded");
+	});
+	  
+});// post profile_upload
 
 app.start = function() {
   // start the web server
