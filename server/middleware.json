@@ -41,10 +41,18 @@
     }
   },
   "files": {
-    "loopback#static": {
-      "paths": "/flowtofiles",
-      "params": "$!../uploads"
-    }
+    "loopback#static": [
+		{
+			"name":"flowtofile",
+			"paths": "/flowtofiles",
+			"params": "$!../uploads"
+    	},
+		{
+			"name":"avatar",
+			"paths": "/profile_pics",
+			"params": "$!../profile_pics"
+    	}
+	]
   },
   "final": {
     "loopback#urlNotFound": {}
