@@ -358,8 +358,7 @@ app.post('/profile_upload',function(req,res,next){
 	// upload then resize with sharp
 		console.log('req//////////');
 		console.log(req.file);
-		console.log('res//////////');
-		console.log(res.file);
+		var sharp= require('sharp');
 		sharp(req.file.path)
 		//.rotate()
 		.resize(400)
