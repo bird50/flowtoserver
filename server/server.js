@@ -312,6 +312,7 @@ if (!fs.existsSync(dir)){
 	sharp(req.file.path)
 		//.rotate()
 		.resize(1477)
+		.withMetadata()
 	//	.toBuffer()
     .toFile(req.file.destination+'/mid/'+req.file.filename,
 		function(err,info){
