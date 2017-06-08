@@ -310,7 +310,7 @@ if (!fs.existsSync(dir)){
 	//import sharp from 'sharp';
 	var sharp= require('sharp');
 	sharp(req.file.path)
-		//.rotate()
+		.rotate()
 		.resize(1477)
 		.withMetadata()
 	//	.toBuffer()
@@ -322,7 +322,7 @@ if (!fs.existsSync(dir)){
 		}
 	)
 sharp(req.file.path)
-	//.rotate()
+	.rotate()
 	.resize(400)
 //	.toBuffer()
 .toFile(req.file.destination+'/thumb/'+req.file.filename,
