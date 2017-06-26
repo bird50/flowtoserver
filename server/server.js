@@ -360,6 +360,7 @@ app.post('/profile_upload',function(req,res,next){
 		console.log('req//////////');
 		console.log(req.file);
 		var sharp= require('sharp');
+		sharp.cache(false);
 		sharp(req.file.path)
 		//.rotate()
 		.resize(400)
