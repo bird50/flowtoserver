@@ -248,7 +248,7 @@ app.get('/gcb', function(req, res, next) {
 			var body_obj=JSON.parse(body);
 			flowtoUser.findOne({
 				
-					"where":{"email":body_obj.email}
+					"where":{"email":body_obj.username}
 				
 			},function(err,theUser){
 				if(err){
