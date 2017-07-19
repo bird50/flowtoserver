@@ -245,7 +245,11 @@ app.get('/gcb', function(req, res, next) {
 		console.log('body:', body); //
 		var flowtoUser=app.models.flowtoUser;
 		// 1. check ว่า ใน RID gmail มี mail นี้ไหม (ข้ามไปก่อน)
-		flowtoUser.find({where:{"email":body.email}},function(err,theUser){
+		flowtoUser.find({
+			"filter":{
+				"where":{"email":body.email}
+			}
+		},function(err,theUser){
 			console.log('theUser:'+JSON.stringify(theUser));
 		});
 		//Account.find({where: {name: 'John'}, limit: 3}, function(err, accounts) { /* ... */ });
