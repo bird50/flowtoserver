@@ -246,7 +246,7 @@ app.get('/gcb', function(req, res, next) {
 			var flowtoUser=app.models.flowtoUser;
 			// 1. check ว่า ใน RID gmail มี mail นี้ไหม (ข้ามไปก่อน)
 			var body_obj=JSON.parse(body);
-			flowtoUser.findOne({
+			flowtoUser.find({
 				
 					"where":{"email":body_obj.username}
 				
