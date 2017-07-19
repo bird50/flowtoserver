@@ -244,7 +244,14 @@ app.get('/gcb', function(req, res, next) {
 		console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received 
 		console.log('body:', body); //
 		var flowtoUser=app.models.flowtoUser;
+		// 1. check ว่า ใน RID gmail มี mail นี้ไหม (ข้ามไปก่อน)
+		flowtoUser.find({where:{"email":body.email}},function(err,theUser){
+			console.log('theUser:'+theUser);
+		});
+		//Account.find({where: {name: 'John'}, limit: 3}, function(err, accounts) { /* ... */ });
 		
+		// 2 check ว่า user ในระบบ มี gmail นี้หรือยัง ถ้ายัง สร้างใหม่
+		// 3 login
 			
 		});//request
        //either save the token to a database, or send it back to the client to save.
