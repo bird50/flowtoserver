@@ -246,11 +246,10 @@ app.get('/gcb', function(req, res, next) {
 			var flowtoUser=app.models.flowtoUser;
 			// 1. check ว่า ใน RID gmail มี mail นี้ไหม (ข้ามไปก่อน)
 			var body_obj=JSON.parse(body);
-			flowtoUser.find({
-				
-					"where":{"email":body_obj.username}
-				
-			},function(err,theUser){
+			var filter={
+				where:{"email":"irrigation.wag@gmail.com"}
+			};
+			flowtoUser.find(filter,function(err,theUser){
 				if(err){
 					/*
   User.create(newUser, function(err, user) {
