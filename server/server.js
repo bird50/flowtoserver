@@ -242,7 +242,7 @@ app.get('/gcb', function(req, res, next) {
 		request(url, function (error, response, body){
 		console.log('error:', error); // Print the error if one occurred 
 		console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received 
-		console.log('body:', body); //
+		console.log('body:', body.email); //
 		var flowtoUser=app.models.flowtoUser;
 		// 1. check ว่า ใน RID gmail มี mail นี้ไหม (ข้ามไปก่อน)
 		flowtoUser.findOne({
