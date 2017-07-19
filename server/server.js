@@ -230,6 +230,7 @@ app.get('/gcb', function(req, res, next) {
 
 	
      oauth2Client.getToken(code, function(error, tokens) {
+		 console.log('oauth2Client.getToken:'+tokens);
        if (error) {res.send(error)};
        var accessToken = tokens.access_token;
 	   console.log('Tok:'+accessToken);
