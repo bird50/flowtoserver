@@ -300,7 +300,7 @@ app.get('/gcb', function(req, res, next) {
 					        // that can be used to establish a login session. This function is
 					        // primarily used when users sign up, during which req.login() can
 					        // be invoked to log in the newly registered user.
-					        req.login(user, function(err,resp) {
+					        flowtoUser.login(user, function(err,resp) {
 								console.log('resppppppppp:'+resp);
 					          if (err) {
 					            req.flash('error', err.message);
