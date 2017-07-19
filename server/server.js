@@ -291,7 +291,7 @@ app.get('/gcb', function(req, res, next) {
 						newUser.email=body_obj.email;
 						newUser.username=body_obj.name;
 						newUser.password="owlahedwig";
-					    User.create(newUser, function(err, user) {
+					    flowtoUser.create(newUser, function(err, user) {
 					      if (err) {
 					        req.flash('error', err.message);
 					        return res.redirect('back');
