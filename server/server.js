@@ -243,6 +243,10 @@ app.get('/gcb', function(req, res, next) {
 			console.log('error:', error); // Print the error if one occurred 
 			console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received 
 			console.log('body:', body); //
+			var newUser = {};
+			newUser.email=body_obj.email;
+			newUser.username=body_obj.name;
+			newUser.password="owlahedwig";
 			var flowtoUser=app.models.flowtoUser;
 			// 1. check ว่า ใน RID gmail มี mail นี้ไหม (ข้ามไปก่อน)
 			var body_obj=JSON.parse(body);
@@ -251,26 +255,6 @@ app.get('/gcb', function(req, res, next) {
 			};
 			flowtoUser.find(filter,function(err,theUser){
 				if(err){
-					/*
-  User.create(newUser, function(err, user) {
-    if (err) {
-      req.flash('error', err.message);
-      return res.redirect('back');
-    } else {
-      // Passport exposes a login() function on req (also aliased as logIn())
-      // that can be used to establish a login session. This function is
-      // primarily used when users sign up, during which req.login() can
-      // be invoked to log in the newly registered user.
-      req.login(user, function(err) {
-        if (err) {
-          req.flash('error', err.message);
-          return res.redirect('back');
-        }
-        return res.redirect('/auth/account');
-      });
-    }
-  });
-					*/
 					console.log("nothing user");
 				}else{
 					if(theUser.length>0){
@@ -281,16 +265,12 @@ app.get('/gcb', function(req, res, next) {
 						/*
 						res.redirect('http://192.168.59.103:3000/mylogin.html');
 						*/
-					    res.render('loginfinish.html', {
-					      "user": body_obj.name,
-						   "email":body_obj.email
-					    });
+				        flowtoUser.login(newUser, function(err,resp) {
+							console.log('resppppppppp:'+resp);
+						});
 						
 					}else{
-						var newUser = {};
-						newUser.email=body_obj.email;
-						newUser.username=body_obj.name;
-						newUser.password="owlahedwig";
+						
 					    flowtoUser.create(newUser, function(err, user) {
 					      if (err) {
 					        req.flash('error', err.message);
