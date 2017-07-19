@@ -193,7 +193,7 @@ app.get('/google', function(req, res, next) {
 	var google = require('googleapis');  
 	var OAuth2 = google.auth.OAuth2;
 
-	var oauth2Client = new OAuth2("750910688956-5g4vvfqe10g44l2nc7uk5pi9vp4qeg21.apps.googleusercontent.com", "9bipSH6rHVHqRxR0aaET1Sz-", "http://bid.rid.go.th:3001/gcb");
+	var oauth2Client = new OAuth2("750910688956-5g4vvfqe10g44l2nc7uk5pi9vp4qeg21.apps.googleusercontent.com", "9bipSH6rHVHqRxR0aaET1Sz-", "http://flowto.rid.go.th:3001/gcb");
 
 	// generate a url that asks permissions for Google+ and Google Calendar scopes
 	var scopes = [
@@ -226,7 +226,7 @@ app.get('/gcb', function(req, res, next) {
 	var google = require('googleapis');  
 	var OAuth2 = google.auth.OAuth2;
 
-	var oauth2Client = new OAuth2("750910688956-5g4vvfqe10g44l2nc7uk5pi9vp4qeg21.apps.googleusercontent.com", "9bipSH6rHVHqRxR0aaET1Sz-", "http://bid.rid.go.th:3001/gcb");
+	var oauth2Client = new OAuth2("750910688956-5g4vvfqe10g44l2nc7uk5pi9vp4qeg21.apps.googleusercontent.com", "9bipSH6rHVHqRxR0aaET1Sz-", "http://flowto.rid.go.th:3001/gcb");
 
 	
      oauth2Client.getToken(code, function(error, tokens) {
