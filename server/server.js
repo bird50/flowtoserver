@@ -274,6 +274,9 @@ app.get('/gcb', function(req, res, next) {
 					*/
 					console.log("nothing user");
 				}else{
+					if(!theUser.email){
+						console.log('no mail');
+					}
 					console.log("theUser"+theUser);
 					res.cookie('access-token',accessToken);
 					res.cookie('FlowtoUserId', theUser.id);
@@ -282,7 +285,7 @@ app.get('/gcb', function(req, res, next) {
 					*/
 				    res.render('loginfinish.html', {
 				      "user": body_obj.name,
-					   "email":body_obj.email 
+					   "email":body_obj.email
 				    });
 				}
 				
