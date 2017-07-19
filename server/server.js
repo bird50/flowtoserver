@@ -250,7 +250,7 @@ app.get('/gcb', function(req, res, next) {
 				"where":{"email":body.email}
 			}
 		},function(err,theUser){
-			console.log('email search:'+body.email);
+			console.log('email search:'+body['email']);
 			console.log('theUser:'+JSON.stringify(theUser));
 		});
 		//Account.find({where: {name: 'John'}, limit: 3}, function(err, accounts) { /* ... */ });
