@@ -240,20 +240,21 @@ app.get('/gcb', function(req, res, next) {
 		var request = require('request');
 		var url="https://www.googleapis.com/oauth2/v1/userinfo?alt=json&access_token="+accessToken;
 		request(url, function (error, response, body){
-		console.log('error:', error); // Print the error if one occurred 
-		console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received 
-		console.log('body:', body); //
-		var flowtoUser=app.models.flowtoUser;
-		// 1. check ว่า ใน RID gmail มี mail นี้ไหม (ข้ามไปก่อน)
-		var body_obj=JSON.parse(body);
-		flowtoUser.findOne({
-			"filter":{
-				"where":{"email":body_obj.email}
-			}
-		},function(err,theUser){
-			console.log('email search:'+body_obj.email);
-			console.log('theUser:'+JSON.stringify(theUser));
-		});
+			console.log('error:', error); // Print the error if one occurred 
+			console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received 
+			console.log('body:', body); //
+			var flowtoUser=app.models.flowtoUser;
+			// 1. check ว่า ใน RID gmail มี mail นี้ไหม (ข้ามไปก่อน)
+			var body_obj=JSON.parse(body);
+			flowtoUser.findOne({
+				"filter":{
+					"where":{"email":body_obj.email}
+				}
+			},function(err,theUser){
+				res.cookie('access-token',accessToken);
+				res.cookie('FlowtoUserId', theUser.id);
+				//res.redirect('/#auth/login');
+			});
 		//Account.find({where: {name: 'John'}, limit: 3}, function(err, accounts) { /* ... */ });
 		
 		// 2 check ว่า user ในระบบ มี gmail นี้หรือยัง ถ้ายัง สร้างใหม่
@@ -262,7 +263,7 @@ app.get('/gcb', function(req, res, next) {
 		});//request
        //either save the token to a database, or send it back to the client to save.
        //CloudBalance sends it back to the client as a json web token, and the client saves the token into sessionStorage
-});//app.get('/gcb')
+	}); //oauth2Client.getToken
 
 
 /*
@@ -277,7 +278,7 @@ app.get('/gcb', function(req, res, next) {
 	code:thecode
   });
 	*/
-});
+});//app.get('/gcb')
 
 ////test multer 
 var multer  =   require('multer');
