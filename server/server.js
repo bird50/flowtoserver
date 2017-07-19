@@ -251,19 +251,40 @@ app.get('/gcb', function(req, res, next) {
 					"where":{"email":body_obj.email}
 				}
 			},function(err,theUser){
-				console.log("theUser"+theUser);
-				
-				res.cookie('access-token',accessToken);
-				res.cookie('FlowtoUserId', theUser.id);
-				/*
-				res.redirect('http://192.168.59.103:3000/mylogin.html');
-				*/
-			    res.render('loginfinish.html', {
-			      "user": body_obj.name,
-				   "email":body_obj.email 
-			    });
-				
-				
+				if(err){
+					/*
+  User.create(newUser, function(err, user) {
+    if (err) {
+      req.flash('error', err.message);
+      return res.redirect('back');
+    } else {
+      // Passport exposes a login() function on req (also aliased as logIn())
+      // that can be used to establish a login session. This function is
+      // primarily used when users sign up, during which req.login() can
+      // be invoked to log in the newly registered user.
+      req.login(user, function(err) {
+        if (err) {
+          req.flash('error', err.message);
+          return res.redirect('back');
+        }
+        return res.redirect('/auth/account');
+      });
+    }
+  });
+					*/
+					console.log("nothing user");
+				}else{
+					console.log("theUser"+theUser);
+					res.cookie('access-token',accessToken);
+					res.cookie('FlowtoUserId', theUser.id);
+					/*
+					res.redirect('http://192.168.59.103:3000/mylogin.html');
+					*/
+				    res.render('loginfinish.html', {
+				      "user": body_obj.name,
+					   "email":body_obj.email 
+				    });
+				}
 				
 			});
 		//Account.find({where: {name: 'John'}, limit: 3}, function(err, accounts) { /* ... */ });
