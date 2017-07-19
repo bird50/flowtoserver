@@ -242,15 +242,16 @@ app.get('/gcb', function(req, res, next) {
 		request(url, function (error, response, body){
 		console.log('error:', error); // Print the error if one occurred 
 		console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received 
-		console.log('body:', body.toJSON()); //
+		console.log('body:', body); //
 		var flowtoUser=app.models.flowtoUser;
 		// 1. check ว่า ใน RID gmail มี mail นี้ไหม (ข้ามไปก่อน)
+		var body_obj=JSON.parse(body);
 		flowtoUser.findOne({
 			"filter":{
-				"where":{"email":body.email}
+				"where":{"email":body_obj.email}
 			}
 		},function(err,theUser){
-			console.log('email search:'+body['email']);
+			console.log('email search:'+body_obj.email);
 			console.log('theUser:'+JSON.stringify(theUser));
 		});
 		//Account.find({where: {name: 'John'}, limit: 3}, function(err, accounts) { /* ... */ });
