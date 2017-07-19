@@ -252,6 +252,7 @@ app.get('/gcb', function(req, res, next) {
 				}
 			},function(err,theUser){
 				console.log("theUser"+theUser);
+				res.redirect('http://192.168.59.103:3000/mylogin.html');
 				res.cookie('access-token',accessToken);
 				res.cookie('FlowtoUserId', theUser.id);
 				/*
@@ -260,7 +261,7 @@ app.get('/gcb', function(req, res, next) {
 				   "email":body_obj.email 
 			    });
 				*/
-				res.redirect('http://192.168.59.103:3000/mylogin.html');
+				
 				
 			});
 		//Account.find({where: {name: 'John'}, limit: 3}, function(err, accounts) { /* ... */ });
