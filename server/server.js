@@ -266,11 +266,13 @@ app.get('/gcb', function(req, res, next) {
 						/*
 						res.redirect('http://192.168.59.103:3000/mylogin.html');
 						*/
-				        flowtoUser.login(newUser, function(err,resp) {
-							console.log('resppppppppp:'+JSON.stringify(resp));
+				        flowtoUser.login(newUser, function(err,token) {
+							console.log('resppppppppp:'+JSON.stringify(token));
+							
   					    	return res.render('loginfinish.html', {
   					      	  "user": body_obj.name,
-  						   	  "email":body_obj.email
+  						   	  "email":body_obj.email,
+								"token":token.id
   					    	});
 						});
 						
@@ -285,15 +287,15 @@ app.get('/gcb', function(req, res, next) {
 					        // that can be used to establish a login session. This function is
 					        // primarily used when users sign up, during which req.login() can
 					        // be invoked to log in the newly registered user.
-					        flowtoUser.login(user, function(err,resp) {
-								console.log('resppppppppp:'+resp);
+					        flowtoUser.login(user, function(err,token) {
 					          if (err) {
 					            req.flash('error', err.message);
 					            return res.redirect('back');
 					          }
 	  					    	return res.render('loginfinish.html', {
 	  					      	  "user": body_obj.name,
-	  						   	  "email":body_obj.email
+	  						   	  "email":body_obj.email,
+									"token":token.id
 	  					    	});
 					        });
 					      }
