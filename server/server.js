@@ -251,8 +251,13 @@ app.get('/gcb', function(req, res, next) {
 					"where":{"email":body_obj.email}
 				}
 			},function(err,theUser){
+				console.log("theUser"+theUser);
 				res.cookie('access-token',accessToken);
 				res.cookie('FlowtoUserId', theUser.id);
+			    res.render('loginfinish.html', {
+			      "user": body_obj.username,
+					"email":body_obj.email 
+			    });
 				//res.redirect('/#auth/login');
 			});
 		//Account.find({where: {name: 'John'}, limit: 3}, function(err, accounts) { /* ... */ });
