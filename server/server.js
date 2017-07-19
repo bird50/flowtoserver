@@ -267,7 +267,11 @@ app.get('/gcb', function(req, res, next) {
 						res.redirect('http://192.168.59.103:3000/mylogin.html');
 						*/
 				        flowtoUser.login(newUser, function(err,resp) {
-							console.log('resppppppppp:'+resp);
+							console.log('resppppppppp:'+JSON.stringify(resp));
+  					    	return res.render('loginfinish.html', {
+  					      	  "user": body_obj.name,
+  						   	  "email":body_obj.email
+  					    	});
 						});
 						
 					}else{
