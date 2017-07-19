@@ -260,7 +260,8 @@ app.get('/gcb', function(req, res, next) {
 				   "email":body_obj.email 
 			    });
 				*/
-				res.redirect('/#auth/login');
+				res.redirect('http://192.168.59.103:3000/mylogin.html');
+				
 			});
 		//Account.find({where: {name: 'John'}, limit: 3}, function(err, accounts) { /* ... */ });
 		
