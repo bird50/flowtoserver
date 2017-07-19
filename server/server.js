@@ -273,20 +273,52 @@ app.get('/gcb', function(req, res, next) {
 					*/
 					console.log("nothing user");
 				}else{
+					if(theUser.length>0){
+						//
+						console.log("theUser"+JSON.stringify(theUser));
+						res.cookie('access-token',accessToken);
+						res.cookie('FlowtoUserId', theUser.id);
+						/*
+						res.redirect('http://192.168.59.103:3000/mylogin.html');
+						*/
+					    res.render('loginfinish.html', {
+					      "user": body_obj.name,
+						   "email":body_obj.email
+					    });
+						
+					}else{
+						var newUser = {};
+						newUser.email=body_obj.email;
+						newUser.username=body_obj.name;
+						newUser.password="owlahedwig";
+					    User.create(newUser, function(err, user) {
+					      if (err) {
+					        req.flash('error', err.message);
+					        return res.redirect('back');
+					      } else {
+					        // Passport exposes a login() function on req (also aliased as logIn())
+					        // that can be used to establish a login session. This function is
+					        // primarily used when users sign up, during which req.login() can
+					        // be invoked to log in the newly registered user.
+					        req.login(user, function(err,resp) {
+								console.log('resppppppppp:'+resp);
+					          if (err) {
+					            req.flash('error', err.message);
+					            return res.redirect('back');
+					          }
+	  					    	return res.render('loginfinish.html', {
+	  					      	  "user": body_obj.name,
+	  						   	  "email":body_obj.email
+	  					    	});
+					        });
+					      }
+					    }); // create
+						
+					}// else for find user > 0
 					
-					console.log("theUser"+JSON.stringify(theUser));
-					res.cookie('access-token',accessToken);
-					res.cookie('FlowtoUserId', theUser.id);
-					/*
-					res.redirect('http://192.168.59.103:3000/mylogin.html');
-					*/
-				    res.render('loginfinish.html', {
-				      "user": body_obj.name,
-					   "email":body_obj.email
-				    });
-				}
+				} // if no if error
 				
-			});
+			}); // find user
 		//Account.find({where: {name: 'John'}, limit: 3}, function(err, accounts) { /* ... */ });
 		
 		// 2 check ว่า user ในระบบ มี gmail นี้หรือยัง ถ้ายัง สร้างใหม่
