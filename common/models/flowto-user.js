@@ -8,8 +8,10 @@ Flowtouser.afterSave = function(next) {
 	next();
 }
 	*/
+/*
 Flowtouser.beforeCreate = function(next, modelInstance) {
 	modelInstance.avatar=modelInstance.email[0].toUpperCase();
 	next();
 }
+	*/
 };
