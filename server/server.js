@@ -247,9 +247,9 @@ app.get('/gcb', function(req, res, next) {
 			// 1. check ว่า ใน RID gmail มี mail นี้ไหม (ข้ามไปก่อน)
 			var body_obj=JSON.parse(body);
 			flowtoUser.findOne({
-				"filter":{
+				
 					"where":{"email":body_obj.email}
-				}
+				
 			},function(err,theUser){
 				if(err){
 					/*
