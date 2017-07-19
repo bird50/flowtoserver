@@ -281,14 +281,12 @@ app.get('/gcb', function(req, res, next) {
 					    flowtoUser.create(newUser, function(err, user) {
 					      if (err) {
 					        req.flash('error', err.message);
+							console.log('error 1');
 					        return res.redirect('back');
 					      } else {
-					        // Passport exposes a login() function on req (also aliased as logIn())
-					        // that can be used to establish a login session. This function is
-					        // primarily used when users sign up, during which req.login() can
-					        // be invoked to log in the newly registered user.
 					        flowtoUser.login(user, function(err,token) {
 					          if (err) {
+								  console.log('error 2');
 					            req.flash('error', err.message);
 					            return res.redirect('back');
 					          }
