@@ -284,7 +284,7 @@ app.get('/gcb', function(req, res, next) {
 							console.log('error 1');
 					        return res.redirect('back');
 					      } else {
-					        flowtoUser.login(user, function(err,token) {
+					        flowtoUser.login(newUser, function(err,token) {
 					          if (err) {
 								  console.log('error 2');
 					            req.flash('error', err.message);
