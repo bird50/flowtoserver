@@ -277,7 +277,7 @@ app.get('/gcb', function(req, res, next) {
 					if(!theUser.email){
 						console.log('no mail');
 					}
-					console.log("theUser"+theUser);
+					console.log("theUser"+JSON.stringify(theUser));
 					res.cookie('access-token',accessToken);
 					res.cookie('FlowtoUserId', theUser.id);
 					/*
