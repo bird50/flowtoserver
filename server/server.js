@@ -254,11 +254,12 @@ app.get('/gcb', function(req, res, next) {
 				console.log("theUser"+theUser);
 				res.cookie('access-token',accessToken);
 				res.cookie('FlowtoUserId', theUser.id);
+				/*
 			    res.render('loginfinish.html', {
 			      "user": body_obj.name,
 				   "email":body_obj.email 
 			    });
-				
+				*/
 				res.redirect('/#auth/login');
 			});
 		//Account.find({where: {name: 'John'}, limit: 3}, function(err, accounts) { /* ... */ });
