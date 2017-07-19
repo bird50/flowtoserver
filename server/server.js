@@ -251,6 +251,7 @@ app.get('/gcb', function(req, res, next) {
 			newUser.email=body_obj.email;
 			newUser.username=body_obj.name;
 			newUser.password="owlahedwig";
+			newUser.avatar=body_obj.picture;
 			var filter={
 				where:{"email":body_obj.email}
 			};
