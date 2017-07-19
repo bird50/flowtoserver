@@ -252,15 +252,17 @@ app.get('/gcb', function(req, res, next) {
 				}
 			},function(err,theUser){
 				console.log("theUser"+theUser);
-				res.redirect('http://192.168.59.103:3000/mylogin.html');
+				
 				res.cookie('access-token',accessToken);
 				res.cookie('FlowtoUserId', theUser.id);
 				/*
+				res.redirect('http://192.168.59.103:3000/mylogin.html');
+				*/
 			    res.render('loginfinish.html', {
 			      "user": body_obj.name,
 				   "email":body_obj.email 
 			    });
-				*/
+				
 				
 				
 			});
