@@ -255,10 +255,11 @@ app.get('/gcb', function(req, res, next) {
 				res.cookie('access-token',accessToken);
 				res.cookie('FlowtoUserId', theUser.id);
 			    res.render('loginfinish.html', {
-			      "user": body_obj.username,
-					"email":body_obj.email 
+			      "user": body_obj.name,
+				   "email":body_obj.email 
 			    });
-				//res.redirect('/#auth/login');
+				
+				res.redirect('/#auth/login');
 			});
 		//Account.find({where: {name: 'John'}, limit: 3}, function(err, accounts) { /* ... */ });
 		
