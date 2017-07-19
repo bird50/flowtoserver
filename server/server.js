@@ -243,13 +243,14 @@ app.get('/gcb', function(req, res, next) {
 			console.log('error:', error); // Print the error if one occurred 
 			console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received 
 			console.log('body:', body); //
+			
+			var flowtoUser=app.models.flowtoUser;
+			// 1. check ว่า ใน RID gmail มี mail นี้ไหม (ข้ามไปก่อน)
+			var body_obj=JSON.parse(body);
 			var newUser = {};
 			newUser.email=body_obj.email;
 			newUser.username=body_obj.name;
 			newUser.password="owlahedwig";
-			var flowtoUser=app.models.flowtoUser;
-			// 1. check ว่า ใน RID gmail มี mail นี้ไหม (ข้ามไปก่อน)
-			var body_obj=JSON.parse(body);
 			var filter={
 				where:{"email":body_obj.email}
 			};
