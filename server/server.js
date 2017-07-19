@@ -270,10 +270,13 @@ app.get('/gcb', function(req, res, next) {
 				        flowtoUser.login(newUser, function(err,token) {
 							console.log('resppppppppp:'+JSON.stringify(token));
 							
-  					    	return res.render('loginfinish.html', {
+  					    	return res.render('loginfinish.html',{
   					      	  "user": body_obj.name,
   						   	  "email":body_obj.email,
-								"token":token.id
+							  "token":token.id,
+							"ttl":token.ttl,
+							"created":token.created,
+							"userId":token.userId
   					    	});
 						});
 						
@@ -291,11 +294,14 @@ app.get('/gcb', function(req, res, next) {
 					            req.flash('error', err.message);
 					            return res.redirect('back');
 					          }
-	  					    	return res.render('loginfinish.html', {
-	  					      	  "user": body_obj.name,
-	  						   	  "email":body_obj.email,
-									"token":token.id
-	  					    	});
+    					    	return res.render('loginfinish.html',{
+    					      	  "user": body_obj.name,
+    						   	  "email":body_obj.email,
+  							  "token":token.id,
+  							"ttl":token.ttl,
+  							"created":token.created,
+  							"userId":token.userId
+    					    	});
 					        });
 					      }
 					    }); // create

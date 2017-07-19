@@ -1,5 +1,19 @@
+<html>
+<head>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+
+</head>
 <h1>Finish</h1>
 <pre>user:{{user}}
 email:{{email}}
 token:{{token}}
+userId:{{userId}}
 </pre>
+<script>
+$( document ).ready(function() {
+		console.log( "ready!" );
+		window.localStorage.setItem('userId',{{userId}});
+		window.localStorage.setItem('userTok',{{token}});
+});
+</script>
+</html>
