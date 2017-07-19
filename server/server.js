@@ -247,7 +247,7 @@ app.get('/gcb', function(req, res, next) {
 			// 1. check ว่า ใน RID gmail มี mail นี้ไหม (ข้ามไปก่อน)
 			var body_obj=JSON.parse(body);
 			var filter={
-				where:{"email":"irrigation.wag@gmail.com"}
+				where:{"email":body_obj.email}
 			};
 			flowtoUser.find(filter,function(err,theUser){
 				if(err){
@@ -273,9 +273,7 @@ app.get('/gcb', function(req, res, next) {
 					*/
 					console.log("nothing user");
 				}else{
-					if(!theUser.email){
-						console.log('no mail');
-					}
+					
 					console.log("theUser"+JSON.stringify(theUser));
 					res.cookie('access-token',accessToken);
 					res.cookie('FlowtoUserId', theUser.id);
