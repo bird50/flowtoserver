@@ -6,11 +6,8 @@
 
 <script>
 angular.module('googleloginApp',[])
-.controller('googleloginCtrl',function($scope,$window,$location,$localStorage) {
-	console.log("isopen:"+$window.isOpen);
-	$window.isOpen=false;
-	$window.userId={{userId}};
-	$window.userTok='{{token}}';
+.controller('googleloginCtrl',function($scope,$window,$location) {
+	
 	var the_result={
 		"token":"{{token}}",
 		"userId":{{userId}}
