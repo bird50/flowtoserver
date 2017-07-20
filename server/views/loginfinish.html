@@ -9,6 +9,13 @@ angular.module('googleloginApp',[])
 	$window.isOpen=false;
 	$window.userId={{userId}};
 	$window.userTok='{{token}}';
+
+	$scope.btnClick=function(){
+		console.log("isopen:"+$window.isOpen);
+		$window.isOpen=false;
+		$window.userId={{userId}};
+		$window.userTok='{{token}}';
+	};
 });
 </script>
 </head>
@@ -19,7 +26,7 @@ email:{{email}}
 
 </pre>
 
-<button ngclidk="">close</button>
+<button ng-click="btnClick">Close</button>
 
 <script>
 $( document ).ready(function() {
