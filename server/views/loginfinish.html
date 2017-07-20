@@ -12,6 +12,13 @@ angular.module('googleloginApp',['ngStorage'])
 	$window.userId={{userId}};
 	$window.userTok='{{token}}';
 
+
+	window.addEventListener('message',function(event) {
+		//if(event.origin !== 'http://davidwalsh.name') return;
+		console.log('message received:  ' + event.data,event);
+		event.source.postMessage('holla back youngin!',event.origin);
+	},false);
+	
 	$scope.btnClick=function(){
 		console.log("isopen:"+$window.isOpen);
 		$window.isOpen=false;
