@@ -1,13 +1,25 @@
 <html>
 <head>
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular.js"></script>
+<script>
+angular.module('googleloginApp',[])
+.controller('googleloginCtrl',function($scope,$window) {
+	$window.isOpen=false;
+	$window.userId={{userId}};
+	$window.userTok='{{token}}';
+});
+</script>
 </head>
+<body ng-app="googleloginApp" ng-controller="googleloginCtrl">
 <h1>Finish</h1>
 <pre>user:{{user}}
 email:{{email}}
 
 </pre>
+
+<button ngclidk="">close</button>
+
 <script>
 $( document ).ready(function() {
 		console.log( "ready!" );
@@ -18,4 +30,5 @@ $( document ).ready(function() {
 		window.userTok='{{token}}';
 });
 </script>
+</body>
 </html>
