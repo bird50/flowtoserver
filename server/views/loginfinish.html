@@ -4,7 +4,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular.js"></script>
 <script>
 angular.module('googleloginApp',[])
-.controller('googleloginCtrl',function($scope,$window) {
+.controller('googleloginCtrl',function($scope,$window,$location) {
 	console.log("isopen:"+$window.isOpen);
 	$window.isOpen=false;
 	$window.userId={{userId}};
@@ -17,6 +17,7 @@ angular.module('googleloginApp',[])
 		$window.userTok='{{token}}';
 		$window.localStorage.setItem('userId',{{userId}});
 		$window.localStorage.setItem('userTok','{{token}}');
+		$location.search("userTok","{{token}}");
 	};
 });
 </script>
