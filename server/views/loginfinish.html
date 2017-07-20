@@ -15,11 +15,13 @@ angular.module('googleloginApp',[])
 		$window.isOpen=false;
 		$window.userId={{userId}};
 		$window.userTok='{{token}}';
+		$window.localStorage.setItem('userId',{{userId}});
+		$window.localStorage.setItem('userTok','{{token}}');
 	};
 });
 </script>
 </head>
-<body ng-app="googleloginApp" ng-controller="googleloginCtrl">
+<body ng-app="googleloginApp" ng-controller="googleloginCtrl" id="mybody">
 <h1>Finish</h1>
 <pre>user:{{user}}
 email:{{email}}
