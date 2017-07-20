@@ -23,8 +23,8 @@ angular.module('googleloginApp',['ngStorage'])
 		
 		//$scope.abc=$localStorage.abc;
 		
-		localStroage.setItem('abc','abc');
-		var abc=localStroage.getItem('abc');
+		localStorage.setItem('abc','abc');
+		var abc=localStorage.getItem('abc');
 		console.log('abc:'+abc);
 	};
 });
