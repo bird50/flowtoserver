@@ -17,6 +17,10 @@
     },
 	"profile": {
 	   "type": "string"
+	},
+	},
+	"register_type": {
+   	 "type": "string"
 	}
   },
   "validations": [],
