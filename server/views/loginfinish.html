@@ -21,7 +21,7 @@ angular.module('googleloginApp',['ngStorage'])
 		$window.localStorage.setItem('userTok','{{token}}');
 		$location.search("userTok","{{token}}");
 		
-		$scope.abc=$localStorage.getItem('abc');
+		$scope.abc=$localStorage.abc;
 		console.log('abc:'+$scope.abc);
 	};
 });
