@@ -297,7 +297,7 @@ app.get('/gcb', function(req, res, next) {
 					      if (err) {
 					        req.flash('error', err.message);
 							console.log('error 1');
-					        return res.render('loginfail.html',{"content":"ไม่สามารถ สมัครได้ในขณะนี้..."});
+					        return res.render('loginfail.html',{"content":"ไม่สามารถ สมัครได้ในขณะนี้...Email นี้อาจมีผู้ใช้อยุ่แล้ว รูปแบบของ user ปกติ"});
 					      } else {
 					        flowtoUser.login(newUser, function(err,token) {
 					          if (err) {

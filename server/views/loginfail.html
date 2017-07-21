@@ -1,17 +1,47 @@
 <html>
 <head>
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular.js"></script>
 
-</head>
-<h1>Login Fail</h1>
-<pre> 
-{{content}}
-</pre>
+
 <script>
-$( document ).ready(function() {
-		console.log( "ready!" );
-	//	window.localStorage.setItem('userId',{{userId}});
-	//	window.localStorage.setItem('userTok','{{token}}');
+angular.module('googleloginApp',[])
+.controller('googleloginCtrl',function($scope,$window,$location,$timeout) {
+	
+	var the_result={
+		"token":"{{token}}",
+		"userId":{{userId}}
+	};
+	var opener_origin=null;
+	window.addEventListener('message',function(event) {
+		//if(event.origin !== 'http://davidwalsh.name') return;
+		//console.log('message received:  ' + event.data,event);
+		event.source.postMessage("login fail",event.origin);
+		opener_origin=event.origin;
+	},false);
+	
+	$scope.btnClick=function(){
+		//window.onbeforeunload = function() {
+		window.opener.postMessage('closed', opener_origin);
+			//};
+		$scope.status_text="Closing...";
+		$timeout(function(){
+			window.close();
+		},500);
+		
+	};
 });
 </script>
+</head>
+<body ng-app="googleloginApp" ng-controller="googleloginCtrl" id="mybody">
+<h1>Login Fail</h1>
+<pre>{{content}}</pre>
+<button ng-click="btnClick();">Close</button>
+
+<script>
+$( document ).ready(function() {
+
+});
+</script>
+</body>
 </html>
