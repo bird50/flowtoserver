@@ -303,7 +303,7 @@ app.get('/gcb', function(req, res, next) {
 					          if (err) {
 								  console.log('error 2');
 					            req.flash('error', err.message);
-					            return res.render('loginfail.html',{"ไม่สามารถ ใช้งาน gmail ที่สมัครได้ในขณะนี้..."});
+					            return res.render('loginfail.html',{"content":"ไม่สามารถ ใช้งาน gmail ที่สมัครได้ในขณะนี้..."});
 					          }
     					    	return res.render('loginfinish.html',{
     					      	  "user": body_obj.name,
