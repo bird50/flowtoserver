@@ -6,22 +6,29 @@
 
 <script>
 angular.module('googleloginApp',[])
-.controller('googleloginCtrl',function($scope,$window,$location) {
+.controller('googleloginCtrl',function($scope,$window,$location,$timeout) {
 	
 	var the_result={
 		"token":"{{token}}",
 		"userId":{{userId}}
 	};
-
+	var opener_origin=null;
 	window.addEventListener('message',function(event) {
 		//if(event.origin !== 'http://davidwalsh.name') return;
 		console.log('message received:  ' + event.data,event);
 		event.source.postMessage(the_result,event.origin);
-		
+		opener_origin=event.origin;
 	},false);
 	
 	$scope.btnClick=function(){
-	
+		//window.onbeforeunload = function() {
+		window.opener.postMessage('closed', opener_origin);
+			//};
+		$scope.status_text="Closing...";
+		$timeout(function(){
+			window.close();
+		},500);
+		
 	};
 });
 </script>
@@ -32,7 +39,7 @@ angular.module('googleloginApp',[])
 email:{{email}}
 
 </pre>
-
+<div>{{status_text}}</div>
 <button ng-click="btnClick();">Close</button>
 
 <script>
