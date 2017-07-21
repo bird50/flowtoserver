@@ -189,6 +189,9 @@ app.get('/auth/logout', function(req, res, next) {
   res.redirect('/');
 });
 
+
+
+
 app.get('/google', function(req, res, next) {
 	var google = require('googleapis');  
 	var OAuth2 = google.auth.OAuth2;
@@ -225,7 +228,6 @@ app.get('/gcb', function(req, res, next) {
     var code = req.query.code;
 	var google = require('googleapis');  
 	var OAuth2 = google.auth.OAuth2;
-
 	var oauth2Client = new OAuth2("750910688956-5g4vvfqe10g44l2nc7uk5pi9vp4qeg21.apps.googleusercontent.com", "9bipSH6rHVHqRxR0aaET1Sz-", "http://flowto.rid.go.th:3001/gcb");
 
 	
@@ -246,28 +248,35 @@ app.get('/gcb', function(req, res, next) {
 			
 			var flowtoUser=app.models.flowtoUser;
 			// 1. check ว่า ใน RID gmail มี mail นี้ไหม (ข้ามไปก่อน)
+		
+			// 2 check ว่า user ในระบบ มี gmail นี้หรือยัง ถ้ายัง สร้างใหม่
+			// 3 login
 			var body_obj=JSON.parse(body);
 			var newUser = {};
 			newUser.email=body_obj.email;
 			newUser.username=body_obj.name;
 			newUser.password="owlahedwig";
 			newUser.avatar=body_obj.picture;
+			
+			var render_vars={};
 			var filter={
-				where:{"email":body_obj.email}
+				where:{"and":[{"email":body_obj.email},{"register_type":"google"}]}
 			};
 			flowtoUser.find(filter,function(err,theUser){
 				if(err){
 					console.log("nothing user");
 				}else{
 					if(theUser.length>0){
-						//
+						// กรณี ,user ที่ใช้ gmail นี้อยู่แล้ว
 						console.log("theUser"+JSON.stringify(theUser));
 						res.cookie('access-token',accessToken);
 						res.cookie('FlowtoUserId', theUser.id);
 						/*
 						res.redirect('http://192.168.59.103:3000/mylogin.html');
 						*/
+						
 				        flowtoUser.login(newUser, function(err,token) {
+							if(err){ return res.render('loginfail.html',{"content":"Email นี้อาจมีผู้ใช้อยุ่แล้ว "});}
 							console.log('resppppppppp:'+JSON.stringify(token));
 							
   					    	return res.render('loginfinish.html',{
@@ -281,26 +290,28 @@ app.get('/gcb', function(req, res, next) {
 						});
 						
 					}else{
+						//กรณี ยังไม่พบ gmail ซ้ำ ให้ register ใหม่
 						
+						// register account ใหม่
 					    flowtoUser.create(newUser, function(err, user) {
 					      if (err) {
 					        req.flash('error', err.message);
 							console.log('error 1');
-					        return res.redirect('back');
+					        return res.render('loginfail.html',{"content":"ไม่สามารถ สมัครได้ในขณะนี้..."});
 					      } else {
 					        flowtoUser.login(newUser, function(err,token) {
 					          if (err) {
 								  console.log('error 2');
 					            req.flash('error', err.message);
-					            return res.redirect('back');
+					            return res.render('loginfail.html',{"ไม่สามารถ ใช้งาน gmail ที่สมัครได้ในขณะนี้..."});
 					          }
     					    	return res.render('loginfinish.html',{
     					      	  "user": body_obj.name,
     						   	  "email":body_obj.email,
-  							  "token":token.id,
-  							"ttl":token.ttl,
-  							"created":token.created,
-  							"userId":token.userId
+  							  	  "token":token.id,
+  									"ttl":token.ttl,
+  									"created":token.created,
+  									"userId":token.userId
     					    	});
 					        });
 					      }
@@ -313,8 +324,6 @@ app.get('/gcb', function(req, res, next) {
 			}); // find user
 		//Account.find({where: {name: 'John'}, limit: 3}, function(err, accounts) { /* ... */ });
 		
-		// 2 check ว่า user ในระบบ มี gmail นี้หรือยัง ถ้ายัง สร้างใหม่
-		// 3 login
 			
 		});//request
        //either save the token to a database, or send it back to the client to save.
