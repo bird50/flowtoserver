@@ -350,7 +350,8 @@ app.get('/rid_gmail_login', function(req, res, next) {
 	console.log(req.param);
 	var accessToken=req.query.accessToken;
 	var request = require('request');
-	var url="https://www.googleapis.com/oauth2/v1/userinfo?alt=json&access_token="+accessToken;
+	//var url="https://www.googleapis.com/oauth2/v1/userinfo?alt=json&access_token="+accessToken;
+	var url="https://www.googleapis.com/oauth2/v3/tokeninfo?id_token="+accessToken;
 	request(url, function (error, response, body){
 		console.log('error:', error); // Print the error if one occurred 
 		console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received 
