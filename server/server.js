@@ -248,6 +248,7 @@ app.get('/gcb', function(req, res, next) {
 			
 			var flowtoUser=app.models.flowtoUser;
 			// 1. check ว่า ใน RID gmail มี mail นี้ไหม (ข้ามไปก่อน)
+			
 		
 			// 2 check ว่า user ในระบบ มี gmail นี้หรือยัง ถ้ายัง สร้างใหม่
 			// 3 login
@@ -359,85 +360,98 @@ app.get('/rid_gmail_login', function(req, res, next) {
 		
 		var flowtoUser=app.models.flowtoUser;
 		// 1. check ว่า ใน RID gmail มี mail นี้ไหม (ข้ามไปก่อน)
-	
+		////endpoint http://flowto.rid.go.th/api/Empemails/getaccount/[gmail]
 		// 2 check ว่า user ในระบบ มี gmail นี้หรือยัง ถ้ายัง สร้างใหม่
 		// 3 login
 		var body_obj=JSON.parse(body);
-		var newUser = {};
-		newUser.email=body_obj.email;
-		newUser.username=body_obj.name;
-		newUser.password="owlahedwig";
-		newUser.avatar=body_obj.picture;
+		//request('http://flowto.rid.go.th/', function (error, response, body){
+		var url_ridgmail= "http://flowto.rid.go.th/api/Empemails/getaccount/"+body_obj.email;
 		
-		var render_vars={};
-		var filter={
-			where:{"and":[{"email":body_obj.email},{"register_type":"google"}]}
-		};
-		flowtoUser.find(filter,function(err,theUser){
-			if(err){
-				console.log("nothing user");
+		request(url_ridgmail, function (error_ridgmail, response_ridgmail, body_ridgmail){
+			if(error_ridgmail){
+				return res.status(404).send({error:"ไม่สามารถ ใช้งาน gmail ที่สมัครได้ในขณะนี้..."});
 			}else{
-				if(theUser.length>0){
-					// กรณี ,user ที่ใช้ gmail นี้อยู่แล้ว
-					console.log("theUser"+JSON.stringify(theUser));
-					//res.cookie('access-token',accessToken);
-					//res.cookie('FlowtoUserId', theUser.id);
-					/*
-					res.redirect('http://192.168.59.103:3000/mylogin.html');
-					*/
+				var newUser = {};
+				newUser.email=body_obj.email;
+				newUser.username=body_obj.name;
+				newUser.password="owlahedwig";
+				newUser.avatar=body_obj.picture;
+				var render_vars={};
+				var filter={
+					where:{"and":[{"email":body_obj.email},{"register_type":"google"}]}
+				};
+				flowtoUser.find(filter,function(err,theUser){
+					if(err){
+						console.log("nothing user");
+					}else{
+						if(theUser.length>0){
+							// กรณี ,user ที่ใช้ gmail นี้อยู่แล้ว
+							console.log("theUser"+JSON.stringify(theUser));
+							//res.cookie('access-token',accessToken);
+							//res.cookie('FlowtoUserId', theUser.id);
+							/*
+							res.redirect('http://192.168.59.103:3000/mylogin.html');
+							*/
 					
-			        flowtoUser.login(newUser, function(err,token) {
-						if(err){ 
-							//return res.render('loginfail.html');
-							return res.status(500).send({error:"Email นี้อาจมีผู้ใช้อยุ่แล้ว "});
-						}
-						console.log('resppppppppp:'+JSON.stringify(token));
+					        flowtoUser.login(newUser, function(err,token) {
+								if(err){ 
+									//return res.render('loginfail.html');
+									return res.status(500).send({error:"Email นี้อาจมีผู้ใช้อยุ่แล้ว "});
+								}
+								console.log('resppppppppp:'+JSON.stringify(token));
 						
-				    	return res.json({
-				      	  "user": body_obj.name,
-					   	  "email":body_obj.email,
-						  "token":token.id,
-						"ttl":token.ttl,
-						"created":token.created,
-						"userId":token.userId
-				    	});
-					});
+						    	return res.json({
+						      	  "user": body_obj.name,
+							   	  "email":body_obj.email,
+								  "token":token.id,
+								"ttl":token.ttl,
+								"created":token.created,
+								"userId":token.userId
+						    	});
+							});
 					
-				}else{
-					//กรณี ยังไม่พบ gmail ซ้ำ ให้ register ใหม่
+						}else{
+							//กรณี ยังไม่พบ gmail ซ้ำ ให้ register ใหม่
 					
-					// register account ใหม่
-				    flowtoUser.create(newUser, function(err, user) {
-				      if (err) {
-				        req.flash('error', err.message);
-						console.log('error 1');
-				       // return res.render('loginfail.html',{"content":""});
-						return res.status(500).send({error:"ไม่สามารถ สมัครได้ในขณะนี้...Email นี้อาจมีผู้ใช้อยุ่แล้ว รูปแบบของ user ปกติ"});
-				      } else {
-				        flowtoUser.login(newUser, function(err,token) {
-				          if (err) {
-							  console.log('error 2');
-				            req.flash('error', err.message);
-				           // return res.render('loginfail.html',{"content":"ไม่สามารถ ใช้งาน gmail ที่สมัครได้ในขณะนี้..."});
-						   return res.status(500).send({error:"ไม่สามารถ ใช้งาน gmail ที่สมัครได้ในขณะนี้..."});
-				          }
-					    	return res.json({
-					      	  "user": body_obj.name,
-						   	  "email":body_obj.email,
-						  	  "token":token.id,
-							"ttl":token.ttl,
-							"created":token.created,
-							"userId":token.userId
-					    	});
-				        });
-				      }
-				    }); // create
+							// register account ใหม่
+						    flowtoUser.create(newUser, function(err, user) {
+						      if (err) {
+						        req.flash('error', err.message);
+								console.log('error 1');
+						       // return res.render('loginfail.html',{"content":""});
+								return res.status(500).send({error:"ไม่สามารถ สมัครได้ในขณะนี้...Email นี้อาจมีผู้ใช้อยุ่แล้ว รูปแบบของ user ปกติ"});
+						      } else {
+						        flowtoUser.login(newUser, function(err,token) {
+						          if (err) {
+									  console.log('error 2');
+						            req.flash('error', err.message);
+						           // return res.render('loginfail.html',{"content":"ไม่สามารถ ใช้งาน gmail ที่สมัครได้ในขณะนี้..."});
+								   return res.status(500).send({error:"ไม่สามารถ ใช้งาน gmail ที่สมัครได้ในขณะนี้..."});
+						          }
+							    	return res.json({
+							      	  "user": body_obj.name,
+								   	  "email":body_obj.email,
+								  	  "token":token.id,
+									"ttl":token.ttl,
+									"created":token.created,
+									"userId":token.userId
+							    	});
+						        });
+						      }
+						    }); // create
 					
-				}// else for find user > 0
+						}// else for find user > 0
 				
-			} // if no if error
+					} // if no if error
 			
-		}); // find user
+				}); // find user
+			}
+			
+		
+		
+		
+		
+		
 	//Account.find({where: {name: 'John'}, limit: 3}, function(err, accounts) { /* ... */ });
 	
 		
