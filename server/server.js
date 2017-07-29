@@ -442,16 +442,12 @@ app.get('/rid_gmail_login', function(req, res, next) {
 					
 						}// else for find user > 0
 				
-					} // if no if error
+					} // if no if error find
 			
 				}); // find user
-			}
-			
-		
-		
-		
-		
-		
+			} //if else(error_ridgmail){
+		}); //request ridgmail
+
 	//Account.find({where: {name: 'John'}, limit: 3}, function(err, accounts) { /* ... */ });
 	
 		
