@@ -366,10 +366,10 @@ app.get('/rid_gmail_login', function(req, res, next) {
 		var body_obj=JSON.parse(body);
 		//request('http://flowto.rid.go.th/', function (error, response, body){
 		var url_ridgmail= "http://flowto.rid.go.th/api/Empemails/getaccount/"+body_obj.email;
-		
+		console.log('url_ridgmail:'+url_ridgmail);
 		request(url_ridgmail, function (error_ridgmail, response_ridgmail, body_ridgmail){
 			if(error_ridgmail){
-				return res.status(404).send({error:"ไม่สามารถ ใช้งาน gmail ที่สมัครได้ในขณะนี้..."});
+				return res.status(404).send({error:"gmail นี้ยังไม่ได้ลงทะเบียนในระบบ ..."});
 			}else{
 				var newUser = {};
 				newUser.email=body_obj.email;
