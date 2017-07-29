@@ -369,6 +369,7 @@ app.get('/rid_gmail_login', function(req, res, next) {
 		console.log('url_ridgmail:'+url_ridgmail);
 		request(url_ridgmail, function (error_ridgmail, response_ridgmail, body_ridgmail){
 			if(error_ridgmail){
+				console.log(error_ridgmail);
 				return res.status(404).send({error:"gmail นี้ยังไม่ได้ลงทะเบียนในระบบ ..."});
 			}else{
 				var newUser = {};
