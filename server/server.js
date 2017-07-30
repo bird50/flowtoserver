@@ -376,9 +376,10 @@ app.get('/rid_gmail_login', function(req, res, next) {
 			}else{
 				var newUser = {};
 				newUser.email=body_obj.email;
-				newUser.username=body_obj.name;
+				newUser.username=body_obj.email.substring(0, body_obj.email.lastIndexOf("@"));//body_obj.name; 
 				newUser.password="owlahedwig";
 				newUser.avatar=body_obj.picture;
+				newUser.register_type="google";
 				var render_vars={};
 				var filter={
 					where:{"and":[{"email":body_obj.email},{"register_type":"google"}]}
