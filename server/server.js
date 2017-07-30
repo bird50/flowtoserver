@@ -364,8 +364,10 @@ app.get('/rid_gmail_login', function(req, res, next) {
 		// 2 check ว่า user ในระบบ มี gmail นี้หรือยัง ถ้ายัง สร้างใหม่
 		// 3 login
 		var body_obj=JSON.parse(body);
-		//request('http://flowto.rid.go.th/', function (error, response, body){
-		var url_ridgmail= "http://flowto.rid.go.th/api/Empemails/getaccount/"+body_obj.email;
+		
+		//var url_ridgmail= "http://flowto.rid.go.th/api/Empemails/getaccount/"+body_obj.email;
+		// ใช้กรณี ผ่าน docker เนื่องจาก อยู่server เดียวกัน (ใช้ server webtool)
+		var url_ridgmail= "http://webtool:8080/api/Empemails/getaccount/"+body_obj.email;
 		console.log('url_ridgmail:'+url_ridgmail);
 		request(url_ridgmail, function (error_ridgmail, response_ridgmail, body_ridgmail){
 			if(error_ridgmail){
