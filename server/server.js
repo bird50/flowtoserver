@@ -375,16 +375,17 @@ app.get('/rid_gmail_login', function(req, res, next) {
 				return res.status(404).send({error:"gmail นี้ยังไม่ได้ลงทะเบียนในระบบ ..."});
 			}else{
 				
-				console.log('body_ridgmail:'+response_ridgmail.body);
+				//console.log('body_ridgmail:'+response_ridgmail.body);
 				//console.log('body_ridgmail Account:'+body_ridgmail['Account']);
+				var body_ridgmail_obj=JSON.parse(body_ridgmail);
 				var newUser = {};
 				newUser.email=body_obj.email;
 				newUser.username=body_obj.email.substring(0, body_obj.email.lastIndexOf("@"));//body_obj.name; 
 				newUser.password="owlahedwig";
 				newUser.avatar=body_obj.picture;
 				newUser.register_type="google";
-				newUser.profile=body_ridgmail.Account.PN_NAME+body_ridgmail.Account.PER_NAME+' '+ body_ridgmail.Account.PER_SURNAME+'\n'+
-body_ridgmail.Account.ORG_NAME;
+				newUser.profile=body_ridgmail_obj.Account.PN_NAME+body_ridgmail_obj.Account.PER_NAME+' '+ body_ridgmail_obj.Account.PER_SURNAME+'\n'+
+body_ridgmail_obj.Account.ORG_NAME;
 				var render_vars={};
 				var filter={
 					where:{"and":[{"email":body_obj.email},{"register_type":"google"}]}
