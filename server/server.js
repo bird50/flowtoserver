@@ -374,7 +374,7 @@ app.get('/rid_gmail_login', function(req, res, next) {
 				//console.log(error_ridgmail);
 				return res.status(404).send({error:"gmail นี้ยังไม่ได้ลงทะเบียนในระบบ ..."});
 			}else{
-				//console.log('response_ridgmail:'+JSON.stringify(response_ridgmail));
+				console.log('response_ridgmail:'+JSON.stringify(response_ridgmail));
 				var newUser = {};
 				newUser.email=body_obj.email;
 				newUser.username=body_obj.email.substring(0, body_obj.email.lastIndexOf("@"));//body_obj.name; 
