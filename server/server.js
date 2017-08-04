@@ -381,7 +381,7 @@ app.get('/rid_gmail_login', function(req, res, next) {
 				newUser.password="owlahedwig";
 				newUser.avatar=body_obj.picture;
 				newUser.register_type="google";
-				newUser.profile==response_ridgmail.body.Account.PN_NAME+response_ridgmail.body.Account.PER_NAME+' '+ response_ridgmail.body.Account.PER_SURNAME+'\n'+
+				newUser.profile=response_ridgmail.body.Account.PN_NAME+response_ridgmail.body.Account.PER_NAME+' '+ response_ridgmail.body.Account.PER_SURNAME+'\n'+
 response_ridgmail.body.Account.ORG_NAME;
 				var render_vars={};
 				var filter={
