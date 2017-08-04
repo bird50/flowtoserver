@@ -368,20 +368,21 @@ app.get('/rid_gmail_login', function(req, res, next) {
 		//var url_ridgmail= "http://flowto.rid.go.th/api/Empemails/getaccount/"+body_obj.email;
 		// ใช้กรณี ผ่าน docker เนื่องจาก อยู่server เดียวกัน (ใช้ server webtool)
 		var url_ridgmail= "http://webtool:8080/api/Empemails/getaccount/"+body_obj.email;
-		console.log('url_ridgmail:'+url_ridgmail);
+		//console.log('url_ridgmail:'+url_ridgmail);
 		request(url_ridgmail, function (error_ridgmail, response_ridgmail, body_ridgmail){
 			if(error_ridgmail){
-				console.log(error_ridgmail);
+				//console.log(error_ridgmail);
 				return res.status(404).send({error:"gmail นี้ยังไม่ได้ลงทะเบียนในระบบ ..."});
 			}else{
-				console.log('response_ridgmail:'+JSON.stringify(response_ridgmail));
+				//console.log('response_ridgmail:'+JSON.stringify(response_ridgmail));
 				var newUser = {};
 				newUser.email=body_obj.email;
 				newUser.username=body_obj.email.substring(0, body_obj.email.lastIndexOf("@"));//body_obj.name; 
 				newUser.password="owlahedwig";
 				newUser.avatar=body_obj.picture;
 				newUser.register_type="google";
-				//newUser.profile=
+				newUser.profile==response_ridgmail.body.Account.PN_NAME+response_ridgmail.body.Account.PER_NAME+' '+ response_ridgmail.body.Account.PER_SURNAME+'\n'+
+response_ridgmail.body.Account.ORG_NAME;
 				var render_vars={};
 				var filter={
 					where:{"and":[{"email":body_obj.email},{"register_type":"google"}]}
@@ -392,7 +393,7 @@ app.get('/rid_gmail_login', function(req, res, next) {
 					}else{
 						if(theUser.length>0){
 							// กรณี ,user ที่ใช้ gmail นี้อยู่แล้ว
-							console.log("theUser"+JSON.stringify(theUser));
+							//console.log("theUser"+JSON.stringify(theUser));
 							//res.cookie('access-token',accessToken);
 							//res.cookie('FlowtoUserId', theUser.id);
 							/*
@@ -404,7 +405,7 @@ app.get('/rid_gmail_login', function(req, res, next) {
 									//return res.render('loginfail.html');
 									return res.status(500).send({error:"Email นี้อาจมีผู้ใช้อยุ่แล้ว "});
 								}
-								console.log('resppppppppp:'+JSON.stringify(token));
+								//console.log('resppppppppp:'+JSON.stringify(token));
 						
 						    	return res.json({
 						      	  "user": body_obj.name,
@@ -423,13 +424,13 @@ app.get('/rid_gmail_login', function(req, res, next) {
 						    flowtoUser.create(newUser, function(err, user) {
 						      if (err) {
 						        req.flash('error', err.message);
-								console.log('error 1');
+								//console.log('error 1');
 						       // return res.render('loginfail.html',{"content":""});
 								return res.status(500).send({error:"ไม่สามารถ สมัครได้ในขณะนี้...Email นี้อาจมีผู้ใช้อยุ่แล้ว รูปแบบของ user ปกติ"});
 						      } else {
 						        flowtoUser.login(newUser, function(err,token) {
 						          if (err) {
-									  console.log('error 2');
+									 // console.log('error 2');
 						            req.flash('error', err.message);
 						           // return res.render('loginfail.html',{"content":"ไม่สามารถ ใช้งาน gmail ที่สมัครได้ในขณะนี้..."});
 								   return res.status(500).send({error:"ไม่สามารถ ใช้งาน gmail ที่สมัครได้ในขณะนี้..."});
