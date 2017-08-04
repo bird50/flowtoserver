@@ -382,8 +382,8 @@ app.get('/rid_gmail_login', function(req, res, next) {
 				newUser.password="owlahedwig";
 				newUser.avatar=body_obj.picture;
 				newUser.register_type="google";
-				newUser.profile=response_ridgmail.body.Account.PN_NAME+response_ridgmail.body.Account.PER_NAME+' '+ response_ridgmail.body.Account.PER_SURNAME+'\n'+
-response_ridgmail.body.Account.ORG_NAME;
+				newUser.profile=body_ridgmail.Account.PN_NAME+body_ridgmail.Account.PER_NAME+' '+ body_ridgmail.Account.PER_SURNAME+'\n'+
+body_ridgmail.Account.ORG_NAME;
 				var render_vars={};
 				var filter={
 					where:{"and":[{"email":body_obj.email},{"register_type":"google"}]}
