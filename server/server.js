@@ -376,7 +376,7 @@ app.get('/rid_gmail_login', function(req, res, next) {
 			}else{
 				
 				console.log('body_ridgmail:'+JSON.stringify(body_ridgmail));
-				console.log('body_ridgmail Account:'+body_ridgmail.Account);
+				console.log('body_ridgmail Account:'+body_ridgmail['Account']);
 				var newUser = {};
 				newUser.email=body_obj.email;
 				newUser.username=body_obj.email.substring(0, body_obj.email.lastIndexOf("@"));//body_obj.name; 
