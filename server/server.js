@@ -384,8 +384,12 @@ app.get('/rid_gmail_login', function(req, res, next) {
 				newUser.password="owlahedwig";
 				newUser.avatar=body_obj.picture;
 				newUser.register_type="google";
-				newUser.profile=body_ridgmail_obj.Account.PN_NAME+body_ridgmail_obj.Account.PER_NAME+' '+ body_ridgmail_obj.Account.PER_SURNAME+'\n'+
-body_ridgmail_obj.Account.ORG_NAME;
+				var PN_NAME=body_ridgmail_obj.Account.PN_NAME ? body_ridgmail_obj.Account.PN_NAME :'';
+				var PER_NAME=body_ridgmail_obj.Account.PER_NAME ? body_ridgmail_obj.Account.PER_NAME :'';
+				var PER_SURNAME=body_ridgmail_obj.Account.PER_SURNAME ? body_ridgmail_obj.Account.PER_SURNAME :'';
+				var ORG_NAME=body_ridgmail_obj.Account.ORG_NAME ? body_ridgmail_obj.Account.ORG_NAME :'';
+				
+				newUser.profile=PN_NAME+PER_NAME+' '+ PER_SURNAME+'\n'+ORG_NAME;
 				var render_vars={};
 				var filter={
 					where:{"and":[{"email":body_obj.email},{"register_type":"google"}]}
